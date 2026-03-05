@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://player.tscn" id="1_fj7yv"]
 [ext_resource type="Texture2D" uid="uid://c40kaqdpey8se" path="res://icon.svg" id="2_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://brwq0x8x8cs4g" path="res://HealtUI.tscn" id="3_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://4035bihmolck" path="res://Enemy.tscn" id="3_tlwt5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aqk2v"]
@@ -25,6 +26,8 @@ position = Vector2(685, 348)
 position = Vector2(495, 340)
 speed = 300.0
 friction = 500.0
+
+[node name="HealthUI" parent="." unique_id=1590557099 instance=ExtResource("3_aqk2v")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=985245244]
 

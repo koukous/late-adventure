@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://brwq0x8x8cs4g"]
+
+[ext_resource type="Script" uid="uid://c2ppssdgsfk52" path="res://healt_ui.gd" id="1_1b0h5"]
+
+[node name="HealthUI" type="CanvasLayer" unique_id=1590557099]
+script = ExtResource("1_1b0h5")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1146098472]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 50.0
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="HealthBar" unique_id=2008229892]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 28.0
+text = "100 / 100"
+horizontal_alignment = 1
+vertical_alignment = 1

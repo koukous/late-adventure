@@ -1,5 +1,5 @@
 extends CharacterBody2D
-# Player with DEBUG PRINTS to see what's happening
+# Player with movement, animations, combat, AND health system!
 
 # Movement settings
 @export var speed: float = 200.0
@@ -9,63 +9,77 @@ extends CharacterBody2D
 # Attack settings
 @export var attack_cooldown: float = 0.5
 
+# Health settings
+@export var max_health: int = 100
+@export var invincibility_duration: float = 1.0  # How long you're invincible after getting hit
+
 # State tracking
 var facing_direction: Vector2 = Vector2.DOWN
 var is_attacking: bool = false
 var can_attack: bool = true
 var attack_timer: float = 0.0
 
+# Health tracking
+var current_health: int
+var is_invincible: bool = false
+var invincibility_timer: float = 0.0
+
 # Node references
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var attack_area = $AttackArea
 @onready var attack_hitbox = $AttackArea/AttackCollision
 
+# Signal to notify UI when health changes
+signal health_changed(new_health, max_health)
+signal player_died
+
 func _ready():
-	# DEBUG: Print to verify nodes exist
-	print("=== PLAYER DEBUG ===")
-	print("AttackArea exists: ", attack_area != null)
-	print("AttackCollision exists: ", attack_hitbox != null)
+	# Initialize health
+	current_health = max_health
 	
-	# Make sure attack hitbox is disabled at start
+	# Disable attack hitbox at start
 	attack_hitbox.disabled = true
 	
-	# Connect signal to see when attack hits something
-	attack_area.body_entered.connect(_on_attack_hit)
-
-func _on_attack_hit(body):
-	print("Attack hit something: ", body.name)
+	# Emit initial health for UI
+	health_changed.emit(current_health, max_health)
 
 func _physics_process(delta):
-	# Update attack cooldown timer
-	if attack_timer > 0:
-		attack_timer -= delta
-		if attack_timer <= 0:
-			can_attack = true
+	# Update timers
+	update_timers(delta)
 	
 	# Check for attack input
-	if Input.is_action_just_pressed("attack"):
-		print("Attack button pressed! Can attack: ", can_attack, " Is attacking: ", is_attacking)
-		if can_attack and not is_attacking:
-			start_attack()
+	if Input.is_action_just_pressed("attack") and can_attack and not is_attacking:
+		start_attack()
 	
 	# Only allow movement if not attacking
 	if not is_attacking:
 		handle_movement(delta)
 	else:
-		# Slow down during attack
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	
 	move_and_slide()
 	update_animation()
 
+func update_timers(delta):
+	# Attack cooldown timer
+	if attack_timer > 0:
+		attack_timer -= delta
+		if attack_timer <= 0:
+			can_attack = true
+	
+	# Invincibility timer
+	if invincibility_timer > 0:
+		invincibility_timer -= delta
+		if invincibility_timer <= 0:
+			is_invincible = false
+			animated_sprite.modulate = Color(1, 1, 1)  # Back to normal color
+
 func handle_movement(delta):
 	var input_direction = get_input_direction()
 	
-	# Update facing direction when moving
 	if input_direction != Vector2.ZERO:
 		facing_direction = input_direction
 	
-	# Apply movement
 	if input_direction != Vector2.ZERO:
 		velocity = velocity.move_toward(input_direction * speed, acceleration * delta)
 	else:
@@ -79,24 +93,16 @@ func get_input_direction() -> Vector2:
 	return direction.normalized()
 
 func start_attack():
-	print(">>> STARTING ATTACK <<<")
 	is_attacking = true
 	can_attack = false
 	attack_timer = attack_cooldown
 	
-	# Position the attack hitbox based on facing direction
 	update_attack_hitbox_position()
-	
-	# Enable hitbox briefly
 	attack_hitbox.disabled = false
-	print("Attack hitbox ENABLED")
 	
-	# Disable hitbox after a short time (attack duration)
 	await get_tree().create_timer(0.2).timeout
 	attack_hitbox.disabled = true
-	print("Attack hitbox DISABLED")
 	
-	# Wait for attack animation to finish
 	await get_tree().create_timer(0.3).timeout
 	is_attacking = false
 
@@ -104,21 +110,70 @@ func update_attack_hitbox_position():
 	var offset_distance = 40
 	
 	if abs(facing_direction.x) > abs(facing_direction.y):
-		# Attacking left or right
 		if facing_direction.x < 0:
 			attack_area.position = Vector2(-offset_distance, 0)
-			print("Attack position: LEFT")
 		else:
 			attack_area.position = Vector2(offset_distance, 0)
-			print("Attack position: RIGHT")
 	else:
-		# Attacking up or down
 		if facing_direction.y < 0:
 			attack_area.position = Vector2(0, -offset_distance)
-			print("Attack position: UP")
 		else:
 			attack_area.position = Vector2(0, offset_distance)
-			print("Attack position: DOWN")
+
+func take_damage(amount: int):
+	# Don't take damage if invincible
+	if is_invincible:
+		return
+	
+	current_health -= amount
+	print("Player took ", amount, " damage! Health: ", current_health, "/", max_health)
+	
+	# Emit signal for UI to update
+	health_changed.emit(current_health, max_health)
+	
+	# Visual feedback - flash red
+	animated_sprite.modulate = Color(1, 0.3, 0.3)
+	
+	# Become invincible temporarily
+	is_invincible = true
+	invincibility_timer = invincibility_duration
+	
+	# Blink effect during invincibility
+	blink_while_invincible()
+	
+	# Check if dead
+	if current_health <= 0:
+		die()
+
+func blink_while_invincible():
+	# Make sprite blink while invincible
+	var blink_count = 0
+	var max_blinks = int(invincibility_duration / 0.15)  # Blink every 0.15 seconds
+	
+	while is_invincible and blink_count < max_blinks:
+		await get_tree().create_timer(0.075).timeout
+		if is_invincible:  # Check if still invincible
+			animated_sprite.modulate.a = 0.3  # Semi-transparent
+		
+		await get_tree().create_timer(0.075).timeout
+		if is_invincible:
+			animated_sprite.modulate = Color(1, 1, 1)  # Fully visible
+		
+		blink_count += 1
+
+func heal(amount: int):
+	current_health = min(current_health + amount, max_health)
+	print("Player healed ", amount, "! Health: ", current_health, "/", max_health)
+	health_changed.emit(current_health, max_health)
+
+func die():
+	print("Player died!")
+	player_died.emit()
+	
+	# Optional: play death animation
+	# For now, just restart the scene
+	await get_tree().create_timer(1.0).timeout
+	get_tree().reload_current_scene()
 
 func update_animation():
 	var is_moving = velocity.length() > 10
