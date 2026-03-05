@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bsm5sds6fdnot" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://chbbf35vbmikf" path="res://sprites/character-spritesheet.png" id="2_onrkg"]
+[ext_resource type="AudioStream" uid="uid://mcxyuakpaini" path="res://sounds/player/sword_sfx.wav" id="3_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://b64lkuxp8oq6f" path="res://sounds/player/hurt_01.mp3" id="4_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://cm72yong22s7t" path="res://sounds/player/SFX_Powerup_01.wav" id="5_fjrip"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
 atlas = ExtResource("2_onrkg")
@@ -355,3 +358,12 @@ shape = SubResource("RectangleShape2D_i3pqv")
 [node name="AttackCollision" type="CollisionShape2D" parent="AttackArea" unique_id=218565209]
 position = Vector2(1, 6)
 shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=983621331]
+stream = ExtResource("3_qlg0r")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=1669158166]
+stream = ExtResource("4_tuyoq")
+
+[node name="HealSound" type="AudioStreamPlayer2D" parent="." unique_id=1452765980]
+stream = ExtResource("5_fjrip")

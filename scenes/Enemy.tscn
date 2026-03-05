@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bnc3a8tmjpjp7" path="res://scripts/enemy.gd" id="1_tt7e2"]
 [ext_resource type="PackedScene" uid="uid://10fh75eob0sw" path="res://scenes/HealtPickup.tscn" id="2_2hac7"]
 [ext_resource type="PackedScene" uid="uid://cbb1qqg12q3mb" path="res://scenes/Coin.tscn" id="3_e6d4v"]
+[ext_resource type="AudioStream" uid="uid://bahy7ibh6vm5q" path="res://sounds/enemy/SoundEnemyHit.wav" id="4_5wwv6"]
+[ext_resource type="AudioStream" uid="uid://4bvf0j8ahrxa" path="res://sounds/enemy/SoundEnemyDeath.wav" id="5_1vja8"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gqquq"]
 size = Vector2(32, 32)
@@ -23,3 +25,9 @@ texture = SubResource("PlaceholderTexture2D_gqquq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=221695465]
 shape = SubResource("RectangleShape2D_s7bn3")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=2025868054]
+stream = ExtResource("4_5wwv6")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=118947307]
+stream = ExtResource("5_1vja8")

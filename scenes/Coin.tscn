@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cbb1qqg12q3mb"]
 
-[ext_resource type="Script" uid="uid://cl2xvlof56gwu" path="res://scripts/coin.gd" id="1_h5dih"]
+[ext_resource type="Script" uid="uid://cl2xvlof56gwu" path="res://scripts/coin.gd" id="1_kyq3r"]
+[ext_resource type="AudioStream" uid="uid://djjkh7f0b450n" path="res://sounds/pickups/SoundCoin.wav" id="2_5twpi"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6wppn"]
 size = Vector2(16, 16)
@@ -8,7 +9,7 @@ size = Vector2(16, 16)
 [sub_resource type="CircleShape2D" id="CircleShape2D_h5dih"]
 
 [node name="Coin" type="Area2D" unique_id=1668004765 groups=["coins"]]
-script = ExtResource("1_h5dih")
+script = ExtResource("1_kyq3r")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=78974147]
 modulate = Color(1, 1, 0.12156863, 1)
@@ -16,3 +17,6 @@ texture = SubResource("PlaceholderTexture2D_6wppn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1193775812]
 shape = SubResource("CircleShape2D_h5dih")
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="." unique_id=1267565786]
+stream = ExtResource("2_5twpi")

@@ -1,33 +1,35 @@
 extends Area2D
-# Health Pickup - heals player when collected
+# Health Pickup with sound effect
 
-@export var heal_amount: int = 25  # How much health to restore
+@export var heal_amount: int = 25
 
 @onready var sprite = $Sprite2D
 @onready var collision = $CollisionShape2D
+@onready var pickup_sound = $PickupSound
 
 func _ready():
-	# Connect the signal for when player enters the area
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
-	# Check if it's the player
 	if body.is_in_group("player"):
-		# Heal the player
 		if body.has_method("heal"):
 			body.heal(heal_amount)
 			print("Player healed for ", heal_amount, "!")
 			
-			# Play pickup animation/effect (optional)
+			# Play sound!
+			if pickup_sound:
+				pickup_sound.play()
+			
 			pickup_effect()
 			
-			# Remove the pickup
+			# Wait for sound to finish
+			if pickup_sound:
+				await pickup_sound.finished
+			
 			queue_free()
 
 func pickup_effect():
-	# Optional visual effect when picked up
-	# Make it grow and fade out quickly
 	var tween = create_tween()
-	tween.set_parallel(true)  # Run animations at same time
+	tween.set_parallel(true)
 	tween.tween_property(self, "scale", Vector2(1.5, 1.5), 0.2)
-	tween.tween_property(sprite, "modulate:a", 0.0, 0.2)  # Fade out
+	tween.tween_property(sprite, "modulate:a", 0.0, 0.2)

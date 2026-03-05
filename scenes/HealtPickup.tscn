@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://10fh75eob0sw"]
 
-[ext_resource type="Script" uid="uid://dhio87ybrr6s6" path="res://scripts/healt_pickup.gd" id="1_iyrr8"]
+[ext_resource type="Script" uid="uid://dhio87ybrr6s6" path="res://scripts/healt_pickup.gd" id="1_owlvx"]
+[ext_resource type="AudioStream" uid="uid://dxswnhillahes" path="res://sounds/pickups/SoundBonus.wav" id="2_xf6ft"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_brdiy"]
 size = Vector2(24, 24)
@@ -9,7 +10,7 @@ size = Vector2(24, 24)
 radius = 15.0
 
 [node name="HealtPickup" type="Area2D" unique_id=1185780650]
-script = ExtResource("1_iyrr8")
+script = ExtResource("1_owlvx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2111885684]
 modulate = Color(0, 1, 0, 1)
@@ -17,3 +18,6 @@ texture = SubResource("PlaceholderTexture2D_brdiy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=931405287]
 shape = SubResource("CircleShape2D_iyrr8")
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="." unique_id=1002102295]
+stream = ExtResource("2_xf6ft")

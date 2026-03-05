@@ -1,5 +1,5 @@
 extends CharacterBody2D
-# Player with movement, animations, combat, AND health system!
+# Player with movement, animations, combat, health, AND sound effects!
 
 # Movement settings
 @export var speed: float = 200.0
@@ -11,15 +11,13 @@ extends CharacterBody2D
 
 # Health settings
 @export var max_health: int = 100
-@export var invincibility_duration: float = 1.0  # How long you're invincible after getting hit
+@export var invincibility_duration: float = 1.0
 
 # State tracking
 var facing_direction: Vector2 = Vector2.DOWN
 var is_attacking: bool = false
 var can_attack: bool = true
 var attack_timer: float = 0.0
-
-# Health tracking
 var current_health: int
 var is_invincible: bool = false
 var invincibility_timer: float = 0.0
@@ -29,29 +27,26 @@ var invincibility_timer: float = 0.0
 @onready var attack_area = $AttackArea
 @onready var attack_hitbox = $AttackArea/AttackCollision
 
-# Signal to notify UI when health changes
+# Sound effect references
+@onready var attack_sound = $AttackSound
+@onready var hurt_sound = $HurtSound
+@onready var heal_sound = $HealSound
+
+# Signals
 signal health_changed(new_health, max_health)
 signal player_died
 
 func _ready():
-	# Initialize health
 	current_health = max_health
-	
-	# Disable attack hitbox at start
 	attack_hitbox.disabled = true
-	
-	# Emit initial health for UI
 	health_changed.emit(current_health, max_health)
 
 func _physics_process(delta):
-	# Update timers
 	update_timers(delta)
 	
-	# Check for attack input
 	if Input.is_action_just_pressed("attack") and can_attack and not is_attacking:
 		start_attack()
 	
-	# Only allow movement if not attacking
 	if not is_attacking:
 		handle_movement(delta)
 	else:
@@ -61,18 +56,16 @@ func _physics_process(delta):
 	update_animation()
 
 func update_timers(delta):
-	# Attack cooldown timer
 	if attack_timer > 0:
 		attack_timer -= delta
 		if attack_timer <= 0:
 			can_attack = true
 	
-	# Invincibility timer
 	if invincibility_timer > 0:
 		invincibility_timer -= delta
 		if invincibility_timer <= 0:
 			is_invincible = false
-			animated_sprite.modulate = Color(1, 1, 1)  # Back to normal color
+			animated_sprite.modulate = Color(1, 1, 1)
 
 func handle_movement(delta):
 	var input_direction = get_input_direction()
@@ -96,6 +89,10 @@ func start_attack():
 	is_attacking = true
 	can_attack = false
 	attack_timer = attack_cooldown
+	
+	# Play attack sound!
+	if attack_sound:
+		attack_sound.play()
 	
 	update_attack_hitbox_position()
 	attack_hitbox.disabled = false
@@ -121,57 +118,54 @@ func update_attack_hitbox_position():
 			attack_area.position = Vector2(0, offset_distance)
 
 func take_damage(amount: int):
-	# Don't take damage if invincible
 	if is_invincible:
 		return
 	
 	current_health -= amount
 	print("Player took ", amount, " damage! Health: ", current_health, "/", max_health)
 	
-	# Emit signal for UI to update
+	# Play hurt sound!
+	if hurt_sound:
+		hurt_sound.play()
+	
 	health_changed.emit(current_health, max_health)
-	
-	# Visual feedback - flash red
 	animated_sprite.modulate = Color(1, 0.3, 0.3)
-	
-	# Become invincible temporarily
 	is_invincible = true
 	invincibility_timer = invincibility_duration
-	
-	# Blink effect during invincibility
 	blink_while_invincible()
 	
-	# Check if dead
 	if current_health <= 0:
 		die()
 
 func blink_while_invincible():
-	# Make sprite blink while invincible
 	var blink_count = 0
-	var max_blinks = int(invincibility_duration / 0.15)  # Blink every 0.15 seconds
+	var max_blinks = int(invincibility_duration / 0.15)
 	
 	while is_invincible and blink_count < max_blinks:
 		await get_tree().create_timer(0.075).timeout
-		if is_invincible:  # Check if still invincible
-			animated_sprite.modulate.a = 0.3  # Semi-transparent
+		if is_invincible:
+			animated_sprite.modulate.a = 0.3
 		
 		await get_tree().create_timer(0.075).timeout
 		if is_invincible:
-			animated_sprite.modulate = Color(1, 1, 1)  # Fully visible
+			animated_sprite.modulate = Color(1, 1, 1)
 		
 		blink_count += 1
 
 func heal(amount: int):
 	current_health = min(current_health + amount, max_health)
 	print("Player healed ", amount, "! Health: ", current_health, "/", max_health)
+	
+	# Play heal sound!
+	if heal_sound:
+		heal_sound.play()
+	
 	health_changed.emit(current_health, max_health)
 
 func die():
 	print("Player died!")
 	player_died.emit()
 	
-	# Optional: play death animation
-	# For now, just restart the scene
 	await get_tree().create_timer(1.0).timeout
 	get_tree().reload_current_scene()
 

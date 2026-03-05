@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://1hikhoqsgbln"]
 
-[ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="1_fj7yv"]
-[ext_resource type="Texture2D" uid="uid://c40kaqdpey8se" path="res://icon.svg" id="2_tlwt5"]
-[ext_resource type="PackedScene" uid="uid://brwq0x8x8cs4g" path="res://scenes/HealtUI.tscn" id="3_aqk2v"]
-[ext_resource type="PackedScene" uid="uid://4035bihmolck" path="res://scenes/Enemy.tscn" id="3_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://4035bihmolck" path="res://scenes/Enemy.tscn" id="1_71j4m"]
+[ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="2_qfnet"]
+[ext_resource type="PackedScene" uid="uid://brwq0x8x8cs4g" path="res://scenes/HealtUI.tscn" id="3_i7141"]
+[ext_resource type="Texture2D" uid="uid://c40kaqdpey8se" path="res://icon.svg" id="4_4mrxx"]
+[ext_resource type="AudioStream" uid="uid://cu0bcnkej7yir" path="res://sounds/music/level1-step1.wav" id="5_7r4gi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aqk2v"]
 size = Vector2(20, 657)
@@ -19,15 +20,15 @@ size = Vector2(1126, 23)
 
 [node name="World" type="Node2D" unique_id=1912787815]
 
-[node name="Enemy" parent="." unique_id=157909595 instance=ExtResource("3_tlwt5")]
+[node name="Enemy" parent="." unique_id=157909595 instance=ExtResource("1_71j4m")]
 position = Vector2(685, 348)
 
-[node name="Player" parent="." unique_id=1202437955 instance=ExtResource("1_fj7yv")]
+[node name="Player" parent="." unique_id=1202437955 instance=ExtResource("2_qfnet")]
 position = Vector2(495, 340)
 speed = 300.0
 friction = 500.0
 
-[node name="HealthUI" parent="." unique_id=1590557099 instance=ExtResource("3_aqk2v")]
+[node name="HealthUI" parent="." unique_id=1590557099 instance=ExtResource("3_i7141")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=985245244]
 
@@ -38,7 +39,7 @@ shape = SubResource("RectangleShape2D_aqk2v")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/leftwall" unique_id=800724774]
 position = Vector2(0.5, 1.5000153)
 scale = Vector2(0.16406249, 5.1250005)
-texture = ExtResource("2_tlwt5")
+texture = ExtResource("4_4mrxx")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1985332060]
 
@@ -49,7 +50,7 @@ shape = SubResource("RectangleShape2D_036b0")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2/rightwall" unique_id=1017686734]
 position = Vector2(-1.7499834, 3.4999847)
 scale = Vector2(0.1835935, 5.0703125)
-texture = ExtResource("2_tlwt5")
+texture = ExtResource("4_4mrxx")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=1386132602]
 
@@ -60,7 +61,7 @@ shape = SubResource("RectangleShape2D_fj7yv")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3/upwall" unique_id=1835484351]
 position = Vector2(-1.9999847, -2.5)
 scale = Vector2(8.78125, 0.13281251)
-texture = ExtResource("2_tlwt5")
+texture = ExtResource("4_4mrxx")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=1666132036]
 
@@ -71,4 +72,8 @@ shape = SubResource("RectangleShape2D_tlwt5")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4/downwall" unique_id=1353714912]
 position = Vector2(0.49996948, -1.4999967)
 scale = Vector2(8.7578125, 0.14062506)
-texture = ExtResource("2_tlwt5")
+texture = ExtResource("4_4mrxx")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1504086269]
+stream = ExtResource("5_7r4gi")
+autoplay = true

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-# Enemy that chases player, damages on contact, and DROPS ITEMS when killed
+# Enemy with AI, drops, AND sound effects!
 
 @export var max_health: int = 30
 @export var contact_damage: int = 10
@@ -8,10 +8,10 @@ extends CharacterBody2D
 @export var detection_range: float = 300.0
 
 # Drop settings
-@export var drop_health_chance: float = 0.3  # 30% chance to drop health
-@export var drop_coin_chance: float = 0.7    # 70% chance to drop coin
-@export var health_pickup_scene: PackedScene  # Drag health pickup scene here
-@export var coin_scene: PackedScene           # Drag coin scene here
+@export var drop_health_chance: float = 0.3
+@export var drop_coin_chance: float = 0.7
+@export var health_pickup_scene: PackedScene
+@export var coin_scene: PackedScene
 
 var current_health: int
 var sprite
@@ -19,38 +19,34 @@ var can_damage_player: bool = true
 var damage_timer: float = 0.0
 var player = null
 
+# Sound references
+@onready var hurt_sound = $HurtSound
+@onready var death_sound = $DeathSound
+
 func _ready():
 	current_health = max_health
 	
-	# Find sprite
 	if has_node("AnimatedSprite2D"):
 		sprite = $AnimatedSprite2D
 	elif has_node("Sprite2D"):
 		sprite = $Sprite2D
 	
-	# Find the player
 	player = get_tree().get_first_node_in_group("player")
 	
-	# Connect to player's attack area
 	if player:
 		var attack_area = player.get_node("AttackArea")
 		attack_area.body_entered.connect(_on_hit_by_attack)
 
 func _physics_process(delta):
-	# Update damage cooldown
 	if damage_timer > 0:
 		damage_timer -= delta
 		if damage_timer <= 0:
 			can_damage_player = true
 	
-	# Chase the player if they exist and are in range
 	if player:
 		chase_player()
 	
-	# Move the enemy
 	move_and_slide()
-	
-	# Check if we're colliding with the player
 	check_player_collision()
 
 func chase_player():
@@ -85,6 +81,10 @@ func take_damage(amount: int):
 	current_health -= amount
 	print("Enemy took ", amount, " damage! Health: ", current_health)
 	
+	# Play hurt sound!
+	if hurt_sound:
+		hurt_sound.play()
+	
 	# Visual feedback
 	if sprite:
 		sprite.modulate = Color(1, 0.3, 0.3)
@@ -98,20 +98,22 @@ func take_damage(amount: int):
 func die():
 	print("Enemy died!")
 	
-	# Drop items before dying!
-	drop_items()
+	# Play death sound!
+	if death_sound:
+		death_sound.play()
+		# Wait for death sound to finish before removing enemy
+		await death_sound.finished
 	
+	drop_items()
 	queue_free()
 
 func drop_items():
-	# Randomly drop health pickup
 	if randf() < drop_health_chance and health_pickup_scene:
 		var health_pickup = health_pickup_scene.instantiate()
 		health_pickup.global_position = global_position
 		get_parent().add_child(health_pickup)
 		print("Dropped health pickup!")
 	
-	# Randomly drop coin
 	if randf() < drop_coin_chance and coin_scene:
 		var coin = coin_scene.instantiate()
 		coin.global_position = global_position + Vector2(randf_range(-20, 20), randf_range(-20, 20))

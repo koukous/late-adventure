@@ -1,33 +1,34 @@
+# === COIN WITH SOUND ===
 extends Area2D
-# Coin - collectible for scoring
 
-@export var coin_value: int = 1  # How many points this coin is worth
+@export var coin_value: int = 1
 
 @onready var sprite = $Sprite2D
+@onready var pickup_sound = $PickupSound
 
-# Signal to notify when coin is collected (for score tracking)
 signal coin_collected(value)
 
 func _ready():
-	# Connect the signal for when player enters the area
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
-	# Check if it's the player
 	if body.is_in_group("player"):
 		print("Coin collected! Value: ", coin_value)
 		
-		# Emit signal so score system can track it
-		coin_collected.emit(coin_value)
+		# Play sound!
+		if pickup_sound:
+			pickup_sound.play()
 		
-		# Play pickup effect
+		coin_collected.emit(coin_value)
 		pickup_effect()
 		
-		# Remove the coin
+		# Wait for sound to finish before removing
+		if pickup_sound:
+			await pickup_sound.finished
+		
 		queue_free()
 
 func pickup_effect():
-	# Visual effect - float up and fade
 	var tween = create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(self, "position", position + Vector2(0, -30), 0.3)
