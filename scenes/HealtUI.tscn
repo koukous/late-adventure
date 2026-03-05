@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://brwq0x8x8cs4g"]
 
-[ext_resource type="Script" uid="uid://c2ppssdgsfk52" path="res://healt_ui.gd" id="1_1b0h5"]
+[ext_resource type="Script" uid="uid://c2ppssdgsfk52" path="res://scripts/healt_ui.gd" id="1_1b0h5"]
 
 [node name="HealthUI" type="CanvasLayer" unique_id=1590557099]
 script = ExtResource("1_1b0h5")
@@ -19,3 +19,13 @@ offset_bottom = 28.0
 text = "100 / 100"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1450423059]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 18
+text = "Coins:0"

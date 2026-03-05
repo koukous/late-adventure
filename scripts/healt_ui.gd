@@ -1,8 +1,11 @@
 extends CanvasLayer
-# Health Bar UI - displays player's current health
+# Health Bar AND Score UI combined
 
 @onready var health_bar = $HealthBar
 @onready var health_label = $HealthBar/HealthLabel
+@onready var score_label = $ScoreLabel  # Add this line!
+
+var total_coins: int = 0  # Add this line!
 
 func _ready():
 	# Find the player and connect to their health signal
@@ -13,6 +16,9 @@ func _ready():
 		
 		# Set initial health display
 		_on_player_health_changed(player.current_health, player.max_health)
+	
+	# Initialize score
+	update_score_display()
 
 func _on_player_health_changed(current_health, max_health):
 	# Update the health bar
@@ -33,3 +39,24 @@ func _on_player_health_changed(current_health, max_health):
 
 func _on_player_died():
 	health_label.text = "DEAD"
+
+# === SCORE FUNCTIONS - ADD THESE ===
+
+func _process(_delta):
+	# Check for coin pickups every frame
+	check_for_coin_pickups()
+
+func check_for_coin_pickups():
+	# Find all coins that just got picked up
+	var coins = get_tree().get_nodes_in_group("coins")
+	for coin in coins:
+		if not coin.is_connected("coin_collected", _on_coin_collected):
+			coin.coin_collected.connect(_on_coin_collected)
+
+func _on_coin_collected(value: int):
+	total_coins += value
+	print("Total coins: ", total_coins)
+	update_score_display()
+
+func update_score_display():
+	score_label.text = "Coins: " + str(total_coins)

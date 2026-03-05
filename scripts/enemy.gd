@@ -1,11 +1,17 @@
 extends CharacterBody2D
-# Enemy that CHASES the player and damages on contact
+# Enemy that chases player, damages on contact, and DROPS ITEMS when killed
 
 @export var max_health: int = 30
 @export var contact_damage: int = 10
 @export var damage_cooldown: float = 1.0
-@export var move_speed: float = 80.0  # Chase speed
-@export var detection_range: float = 300.0  # How far enemy can "see" player
+@export var move_speed: float = 80.0
+@export var detection_range: float = 300.0
+
+# Drop settings
+@export var drop_health_chance: float = 0.3  # 30% chance to drop health
+@export var drop_coin_chance: float = 0.7    # 70% chance to drop coin
+@export var health_pickup_scene: PackedScene  # Drag health pickup scene here
+@export var coin_scene: PackedScene           # Drag coin scene here
 
 var current_health: int
 var sprite
@@ -48,32 +54,23 @@ func _physics_process(delta):
 	check_player_collision()
 
 func chase_player():
-	# Calculate distance to player
 	var distance_to_player = global_position.distance_to(player.global_position)
 	
-	# Only chase if player is within detection range
 	if distance_to_player < detection_range:
-		# Calculate direction to player
 		var direction = (player.global_position - global_position).normalized()
-		
-		# Move towards player
 		velocity = direction * move_speed
 	else:
-		# Player too far away - stop moving
 		velocity = Vector2.ZERO
 
 func check_player_collision():
-	# Check all collisions this frame
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		
-		# If we hit the player
 		if collider and collider.is_in_group("player") and can_damage_player:
 			damage_player(collider)
 
 func damage_player(player_node):
-	# Tell the player to take damage
 	if player_node.has_method("take_damage"):
 		player_node.take_damage(contact_damage)
 		can_damage_player = false
@@ -92,7 +89,7 @@ func take_damage(amount: int):
 	if sprite:
 		sprite.modulate = Color(1, 0.3, 0.3)
 		await get_tree().create_timer(0.1).timeout
-		if sprite:  # Check if still exists
+		if sprite:
 			sprite.modulate = Color(1, 1, 1)
 	
 	if current_health <= 0:
@@ -100,4 +97,23 @@ func take_damage(amount: int):
 
 func die():
 	print("Enemy died!")
+	
+	# Drop items before dying!
+	drop_items()
+	
 	queue_free()
+
+func drop_items():
+	# Randomly drop health pickup
+	if randf() < drop_health_chance and health_pickup_scene:
+		var health_pickup = health_pickup_scene.instantiate()
+		health_pickup.global_position = global_position
+		get_parent().add_child(health_pickup)
+		print("Dropped health pickup!")
+	
+	# Randomly drop coin
+	if randf() < drop_coin_chance and coin_scene:
+		var coin = coin_scene.instantiate()
+		coin.global_position = global_position + Vector2(randf_range(-20, 20), randf_range(-20, 20))
+		get_parent().add_child(coin)
+		print("Dropped coin!")

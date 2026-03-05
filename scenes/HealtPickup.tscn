@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://10fh75eob0sw"]
+
+[ext_resource type="Script" uid="uid://dhio87ybrr6s6" path="res://scripts/healt_pickup.gd" id="1_iyrr8"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_brdiy"]
+size = Vector2(24, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iyrr8"]
+radius = 15.0
+
+[node name="HealtPickup" type="Area2D" unique_id=1185780650]
+script = ExtResource("1_iyrr8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2111885684]
+modulate = Color(0, 1, 0, 1)
+texture = SubResource("PlaceholderTexture2D_brdiy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=931405287]
+shape = SubResource("CircleShape2D_iyrr8")
