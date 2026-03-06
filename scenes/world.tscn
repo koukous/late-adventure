@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://1hikhoqsgbln"]
 
+[ext_resource type="Script" uid="uid://dfw0b06osjk6p" path="res://scripts/world.gd" id="1_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://4035bihmolck" path="res://scenes/Enemy.tscn" id="1_71j4m"]
 [ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="2_qfnet"]
 [ext_resource type="PackedScene" uid="uid://brwq0x8x8cs4g" path="res://scenes/HealtUI.tscn" id="3_i7141"]
 [ext_resource type="Texture2D" uid="uid://c40kaqdpey8se" path="res://icon.svg" id="4_4mrxx"]
 [ext_resource type="AudioStream" uid="uid://cu0bcnkej7yir" path="res://sounds/music/level1-step1.wav" id="5_7r4gi"]
+[ext_resource type="PackedScene" uid="uid://b7x5h0bi8w647" path="res://scenes/ItemPickup.tscn" id="6_qfnet"]
+[ext_resource type="PackedScene" uid="uid://5yr8sq54vd8q" path="res://scenes/InventoryUI.tscn" id="7_i7141"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aqk2v"]
 size = Vector2(20, 657)
@@ -19,6 +22,7 @@ size = Vector2(1122, 20)
 size = Vector2(1126, 23)
 
 [node name="World" type="Node2D" unique_id=1912787815]
+script = ExtResource("1_4mrxx")
 
 [node name="Enemy" parent="." unique_id=157909595 instance=ExtResource("1_71j4m")]
 position = Vector2(685, 348)
@@ -77,3 +81,12 @@ texture = ExtResource("4_4mrxx")
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1504086269]
 stream = ExtResource("5_7r4gi")
 autoplay = true
+
+[node name="ItemPickup" parent="." unique_id=1811027317 instance=ExtResource("6_qfnet")]
+position = Vector2(398, 222)
+
+[node name="InventoryUI" parent="." unique_id=1045189334 instance=ExtResource("7_i7141")]
+offset_left = 556.0
+offset_top = 340.0
+offset_right = 556.0
+offset_bottom = 340.0

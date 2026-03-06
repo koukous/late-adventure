@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b7x5h0bi8w647"]
+
+[ext_resource type="Script" uid="uid://bc3v1m4gbict2" path="res://scripts/item_pickup.gd" id="1_a0vs4"]
+[ext_resource type="Resource" uid="uid://sgaalybxuklw" path="res://resources/wood.tres" id="2_1m3bo"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_a0vs4"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vbh43"]
+radius = 12.0
+
+[node name="ItemPickup" type="Area2D" unique_id=991378992]
+script = ExtResource("1_a0vs4")
+item_data = ExtResource("2_1m3bo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1284740395]
+texture = SubResource("PlaceholderTexture2D_a0vs4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=908852545]
+shape = SubResource("CircleShape2D_vbh43")

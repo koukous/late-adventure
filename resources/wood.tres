@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://sgaalybxuklw"]
+
+[ext_resource type="Script" uid="uid://c4xjbmk0lvhi7" path="res://scripts/item_data.gd" id="1_gt3uy"]
+
+[resource]
+script = ExtResource("1_gt3uy")
+item_name = "wood"
+description = "wood plank"
+metadata/_custom_type_script = "uid://c4xjbmk0lvhi7"
