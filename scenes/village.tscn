@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://blrghfb0id5hc" path="res://scenes/global/GlobalUI.tscn" id="10_pa23k"]
 
 [node name="Village" type="Node2D" unique_id=1882130929]
+y_sort_enabled = true
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=626749177]
 offset_left = 5.0
