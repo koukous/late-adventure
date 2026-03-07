@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://blrghfb0id5hc"]
+
+[ext_resource type="Script" uid="uid://ljqwv3c267ff" path="res://scripts/global_ui.gd" id="1_kkq6e"]
+[ext_resource type="PackedScene" uid="uid://5yr8sq54vd8q" path="res://scenes/InventoryUI.tscn" id="2_lnbkq"]
+[ext_resource type="PackedScene" uid="uid://brwq0x8x8cs4g" path="res://scenes/HealtUI.tscn" id="3_5faa8"]
+
+[node name="GlobalUi" type="CanvasLayer" unique_id=1810816273]
+script = ExtResource("1_kkq6e")
+
+[node name="InventoryUI" parent="." unique_id=49627175 instance=ExtResource("2_lnbkq")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthUI" parent="." unique_id=1590557099 instance=ExtResource("3_5faa8")]

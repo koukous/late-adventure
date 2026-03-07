@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dpqdp8ukrutmk"]
+[gd_scene format=3 uid="uid://bkkwnmymilnn5"]
 
 [ext_resource type="PackedScene" uid="uid://bg45g6xs04ap8" path="res://scenes/buildings/GeneralStore.tscn" id="1_5m02y"]
 [ext_resource type="PackedScene" uid="uid://b0ha4qico7hb" path="res://scenes/buildings/BlackSmith.tscn" id="2_7sh0f"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ca4iac84t6ohm" path="res://scenes/buildings/training_grounds.tscn" id="7_kcivn"]
 [ext_resource type="PackedScene" uid="uid://lb31uy8m4d78" path="res://scenes/buildings/tree.tscn" id="8_53v4c"]
 [ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="9_7sh0f"]
+[ext_resource type="PackedScene" uid="uid://blrghfb0id5hc" path="res://scenes/global/GlobalUI.tscn" id="10_pa23k"]
 
 [node name="Village" type="Node2D" unique_id=1882130929]
 
@@ -81,3 +82,5 @@ limit_bottom = 2000
 
 [node name="Player" parent="." unique_id=1202437955 instance=ExtResource("9_7sh0f")]
 position = Vector2(363, 346)
+
+[node name="GlobalUi" parent="." unique_id=1810816273 instance=ExtResource("10_pa23k")]
