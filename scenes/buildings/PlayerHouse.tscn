@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://clm12guyg0470"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2af8e"]
-size = Vector2(80, 60)
+size = Vector2(80, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hrw4"]
 size = Vector2(20, 10)
@@ -9,6 +9,7 @@ size = Vector2(20, 10)
 [node name="PlayerHouse" type="Node2D" unique_id=1782140116]
 
 [node name="Body" type="ColorRect" parent="." unique_id=1014768282]
+y_sort_enabled = true
 offset_left = -40.0
 offset_top = -30.0
 offset_right = 40.0
@@ -32,6 +33,7 @@ color = Color(0.23137255, 0.14117648, 0.078431375, 1)
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=806956922]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=619798453]
+position = Vector2(0, 20)
 shape = SubResource("RectangleShape2D_2af8e")
 
 [node name="EntranceArea" type="Area2D" parent="." unique_id=1217744410]

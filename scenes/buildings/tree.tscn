@@ -21,4 +21,5 @@ color = Color(0.13333334, 0.54509807, 0.13333334, 1)
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1514245025]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=862348505]
+position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_ivubx")

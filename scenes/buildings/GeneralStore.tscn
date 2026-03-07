@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bg45g6xs04ap8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88te6"]
-size = Vector2(90, 70)
+size = Vector2(90, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbuvm"]
 size = Vector2(22, 10)
@@ -9,6 +9,7 @@ size = Vector2(22, 10)
 [node name="GeneralStore" type="Node2D" unique_id=1457128946]
 
 [node name="Body" type="ColorRect" parent="." unique_id=1882145982]
+y_sort_enabled = true
 offset_left = -45.0
 offset_top = -35.0
 offset_right = 45.0
@@ -46,6 +47,7 @@ color = Color(0.3647059, 0.30588236, 0.21568628, 1)
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=768840978]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=559637993]
+position = Vector2(0, 23)
 shape = SubResource("RectangleShape2D_88te6")
 
 [node name="EntranceArea" type="Area2D" parent="." unique_id=327027064]
