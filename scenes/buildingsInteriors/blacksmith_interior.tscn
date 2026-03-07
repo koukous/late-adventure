@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://bnacwqpp8jc3o"]
+
+[ext_resource type="Script" uid="uid://cegwe11lpx4iy" path="res://scripts/global/exist_door.gd" id="1_hegpg"]
+[ext_resource type="Script" uid="uid://c3kpsn1i1tgqh" path="res://scripts/global/npc.gd" id="2_u0wi3"]
+[ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="3_ucpqw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0wi3"]
+size = Vector2(60, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hegpg"]
+size = Vector2(32, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucpqw"]
+size = Vector2(80, 80)
+
+[node name="BlacksmithInterior" type="Node2D" unique_id=1340101535]
+
+[node name="Floor" type="ColorRect" parent="." unique_id=1470191318]
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0.23137255, 0.23137255, 0.23137255, 1)
+
+[node name="WallLeft" type="ColorRect" parent="." unique_id=2070358924]
+offset_right = 50.0
+offset_bottom = 480.0
+color = Color(0.3529412, 0.3529412, 0.3529412, 1)
+
+[node name="WallRight" type="ColorRect" parent="." unique_id=2006849990]
+offset_left = 590.0
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0.3529412, 0.3529412, 0.3529412, 1)
+
+[node name="Forge" type="ColorRect" parent="." unique_id=1294268745]
+offset_left = 100.0
+offset_top = 150.0
+offset_right = 200.0
+offset_bottom = 230.0
+color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+
+[node name="Anvil" type="ColorRect" parent="." unique_id=653256750]
+offset_left = 400.0
+offset_top = 250.0
+offset_right = 460.0
+offset_bottom = 290.0
+color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+
+[node name="ExitDoor" type="Area2D" parent="." unique_id=1419543367]
+position = Vector2(320, 450)
+script = ExtResource("1_hegpg")
+spawn_position_in_village = Vector2(700, 400)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitDoor" unique_id=130377751]
+shape = SubResource("RectangleShape2D_u0wi3")
+
+[node name="DoorVisual" type="ColorRect" parent="ExitDoor" unique_id=848805683]
+offset_left = -30.0
+offset_top = -40.0
+offset_right = 30.0
+offset_bottom = 40.0
+color = Color(0.39607844, 0.2627451, 0.12941177, 1)
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1657458665 groups=["player_spawn"]]
+position = Vector2(320, 400)
+
+[node name="BlacksmithNPC" type="CharacterBody2D" parent="." unique_id=2010132127]
+position = Vector2(250, 250)
+script = ExtResource("2_u0wi3")
+npc_name = "Blacksmith Goran"
+
+[node name="ColorRect" type="ColorRect" parent="BlacksmithNPC" unique_id=1330434737]
+offset_left = -16.0
+offset_top = -24.0
+offset_right = 16.0
+offset_bottom = 24.0
+color = Color(1, 0.54901963, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlacksmithNPC" unique_id=754773347]
+shape = SubResource("RectangleShape2D_hegpg")
+
+[node name="InteractionArea" type="Area2D" parent="BlacksmithNPC" unique_id=910655077]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlacksmithNPC/InteractionArea" unique_id=374516806]
+shape = SubResource("RectangleShape2D_ucpqw")
+
+[node name="PromptLabel" type="Label" parent="BlacksmithNPC" unique_id=2029635802]
+offset_left = -40.0
+offset_top = -70.0
+offset_right = 69.0
+offset_bottom = -47.0
+theme_override_font_sizes/font_size = 14
+text = "Press E to talk"
+
+[node name="Player" parent="." unique_id=1202437955 instance=ExtResource("3_ucpqw")]
+position = Vector2(320, 400)

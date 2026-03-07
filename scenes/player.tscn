@@ -367,3 +367,5 @@ stream = ExtResource("4_tuyoq")
 
 [node name="HealSound" type="AudioStreamPlayer2D" parent="." unique_id=1452765980]
 stream = ExtResource("5_fjrip")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=261340826]

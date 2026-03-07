@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://b0ha4qico7hb"]
 
+[ext_resource type="Script" uid="uid://cnvx2stfmam87" path="res://scripts/global/building_entrence.gd" id="1_3nfoi"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imbdx"]
 size = Vector2(100, 80)
 
@@ -49,6 +51,9 @@ shape = SubResource("RectangleShape2D_imbdx")
 
 [node name="EntranceArea" type="Area2D" parent="." unique_id=326703266]
 position = Vector2(20, 45)
+script = ExtResource("1_3nfoi")
+interior_scene_path = "uid://bnacwqpp8jc3o"
+building_name = "Blacksmith's Forge"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EntranceArea" unique_id=636596415]
 shape = SubResource("RectangleShape2D_3nfoi")

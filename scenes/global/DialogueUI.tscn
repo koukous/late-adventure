@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://khsalhy0nbt4"]
+
+[ext_resource type="Script" uid="uid://fh837kwpu1ua" path="res://scripts/global/dialogue_ui.gd" id="1_1xkok"]
+
+[node name="DialogueUi" type="CanvasLayer" unique_id=1030456280]
+script = ExtResource("1_1xkok")
+
+[node name="DialoguePanel" type="Panel" parent="." unique_id=1621373890]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -150.0
+offset_right = 600.0
+grow_vertical = 0
+
+[node name="NameLabel" type="Label" parent="DialoguePanel" unique_id=1379894001]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 98.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "NPC Name"
+
+[node name="DialogueText" type="Label" parent="DialoguePanel" unique_id=1985563888]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 45.0
+offset_right = 585.0
+offset_bottom = 105.0
+text = "Dialogue text goes here..."
+autowrap_mode = 2
+
+[node name="ContinueLabel" type="Label" parent="DialoguePanel" unique_id=1537540171]
+modulate = Color(0.74509805, 0.74509805, 0.74509805, 1)
+layout_mode = 0
+offset_left = 450.0
+offset_top = 120.0
+offset_right = 611.0
+offset_bottom = 143.0
+theme_override_font_sizes/font_size = 12
+text = "Press E to continue..."

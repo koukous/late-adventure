@@ -24,7 +24,7 @@ color = Color(0.2901961, 0.4862745, 0.23137255, 1)
 position = Vector2(400, 500)
 
 [node name="BlackSmith" parent="." unique_id=1035286810 instance=ExtResource("2_7sh0f")]
-position = Vector2(1400, 900)
+position = Vector2(776, 105)
 
 [node name="GuildHall" parent="." unique_id=116330280 instance=ExtResource("3_pa23k")]
 position = Vector2(700, 500)
