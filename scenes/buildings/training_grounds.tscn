@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://ca4iac84t6ohm"]
+
+[node name="TrainingGrounds" type="Node2D" unique_id=81885336]
+
+[node name="ArenaFloor" type="ColorRect" parent="." unique_id=1764548760]
+offset_left = -75.0
+offset_top = -60.0
+offset_right = 75.0
+offset_bottom = 60.0
+color = Color(0.7607843, 0.69803923, 0.5019608, 1)
+
+[node name="FenceTop" type="ColorRect" parent="." unique_id=578589444]
+offset_left = -75.0
+offset_top = -65.0
+offset_right = 75.0
+offset_bottom = -60.0
+color = Color(0.54509807, 0.4509804, 0.33333334, 1)
+
+[node name="FenceBottom" type="ColorRect" parent="." unique_id=17773228]
+offset_left = -75.0
+offset_top = 60.0
+offset_right = 75.0
+offset_bottom = 65.0
+color = Color(0.54509807, 0.4509804, 0.33333334, 1)
+
+[node name="FenceLeft" type="ColorRect" parent="." unique_id=265017164]
+offset_left = -77.5
+offset_top = -60.0
+offset_right = -72.5
+offset_bottom = 60.0
+color = Color(0.54509807, 0.4509804, 0.33333334, 1)
+
+[node name="FenceRight" type="ColorRect" parent="." unique_id=1563577982]
+offset_left = 72.5
+offset_top = -60.0
+offset_right = 77.5
+offset_bottom = 60.0
+color = Color(0.54509807, 0.4509804, 0.33333334, 1)
+
+[node name="Dummy" type="ColorRect" parent="." unique_id=2056040841]
+offset_left = -10.0
+offset_top = -20.0
+offset_right = 10.0
+offset_bottom = 20.0
+color = Color(0.54509807, 0.27058825, 0.07450981, 1)
+
+[node name="Label" type="Label" parent="." unique_id=43740233]
+offset_left = -50.0
+offset_top = -80.0
+offset_right = 84.0
+offset_bottom = -57.0
+text = "Training Grounds"

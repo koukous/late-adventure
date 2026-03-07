@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://b86wtqc80qtpt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_at3ql"]
+size = Vector2(85, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tya86"]
+size = Vector2(22, 10)
+
+[node name="ElderHouse" type="Node2D" unique_id=164381257]
+
+[node name="Body" type="ColorRect" parent="." unique_id=108734291]
+offset_left = -42.5
+offset_top = -32.5
+offset_right = 42.5
+offset_bottom = 32.5
+color = Color(0.9607843, 0.9607843, 0.8627451, 1)
+
+[node name="Roof" type="ColorRect" parent="." unique_id=1397474368]
+offset_left = -47.5
+offset_top = -52.0
+offset_right = 47.5
+offset_bottom = -32.0
+color = Color(0.4392157, 0.5019608, 0.5647059, 1)
+
+[node name="Trim" type="ColorRect" parent="." unique_id=408738092]
+offset_left = -42.5
+offset_top = -35.0
+offset_right = 42.5
+offset_bottom = -30.0
+color = Color(0.85490197, 0.64705884, 0.1254902, 1)
+
+[node name="Door" type="ColorRect" parent="." unique_id=1745356172]
+offset_left = -9.0
+offset_top = 4.5
+offset_right = 9.0
+offset_bottom = 32.5
+color = Color(0.39607844, 0.2627451, 0.12941177, 1)
+
+[node name="Window1" type="ColorRect" parent="." unique_id=298502199]
+offset_left = -30.0
+offset_right = -20.0
+offset_bottom = 12.0
+color = Color(0.6901961, 0.8784314, 0.9019608, 1)
+
+[node name="Window2" type="ColorRect" parent="." unique_id=528512906]
+offset_left = 20.0
+offset_right = 30.0
+offset_bottom = 12.0
+color = Color(0.6901961, 0.8784314, 0.9019608, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1862094815]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=5974642]
+shape = SubResource("RectangleShape2D_at3ql")
+
+[node name="EntranceArea" type="Area2D" parent="." unique_id=857836517]
+position = Vector2(0, 37)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntranceArea" unique_id=958946922]
+shape = SubResource("RectangleShape2D_tya86")
+
+[node name="Label" type="Label" parent="." unique_id=1550240027]
+offset_left = -35.0
+offset_top = -65.0
+offset_right = 70.0
+offset_bottom = -42.0
+text = "Elder's House"

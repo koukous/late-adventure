@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://lb31uy8m4d78"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ivubx"]
+radius = 20.0
+
+[node name="Tree" type="Node2D" unique_id=331852306]
+
+[node name="Trunk" type="ColorRect" parent="." unique_id=1768259525]
+offset_left = -7.5
+offset_right = 7.5
+offset_bottom = 30.0
+color = Color(0.39607844, 0.2627451, 0.12941177, 1)
+
+[node name="Leaves" type="ColorRect" parent="." unique_id=1739138941]
+offset_left = -20.0
+offset_top = -35.0
+offset_right = 20.0
+offset_bottom = 5.0
+color = Color(0.13333334, 0.54509807, 0.13333334, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1514245025]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=862348505]
+shape = SubResource("CircleShape2D_ivubx")

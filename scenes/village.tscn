@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://dpqdp8ukrutmk"]
+
+[ext_resource type="PackedScene" uid="uid://bg45g6xs04ap8" path="res://scenes/buildings/GeneralStore.tscn" id="1_5m02y"]
+[ext_resource type="PackedScene" uid="uid://b0ha4qico7hb" path="res://scenes/buildings/BlackSmith.tscn" id="2_7sh0f"]
+[ext_resource type="PackedScene" uid="uid://b0t6y2eyypdb8" path="res://scenes/buildings/GuildHall.tscn" id="3_pa23k"]
+[ext_resource type="PackedScene" uid="uid://clm12guyg0470" path="res://scenes/buildings/PlayerHouse.tscn" id="4_oiag1"]
+[ext_resource type="PackedScene" uid="uid://b3fvi5dgfbbbv" path="res://scenes/buildings/InnTavern.tscn" id="5_gktdk"]
+[ext_resource type="PackedScene" uid="uid://b86wtqc80qtpt" path="res://scenes/buildings/elder_house.tscn" id="6_a655f"]
+[ext_resource type="PackedScene" uid="uid://ca4iac84t6ohm" path="res://scenes/buildings/training_grounds.tscn" id="7_kcivn"]
+[ext_resource type="PackedScene" uid="uid://lb31uy8m4d78" path="res://scenes/buildings/tree.tscn" id="8_53v4c"]
+[ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="9_7sh0f"]
+
+[node name="Village" type="Node2D" unique_id=1882130929]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=626749177]
+offset_left = 5.0
+offset_top = 8.0
+offset_right = 2005.0
+offset_bottom = 2008.0
+color = Color(0.2901961, 0.4862745, 0.23137255, 1)
+
+[node name="GeneralStore" parent="." unique_id=1457128946 instance=ExtResource("1_5m02y")]
+position = Vector2(400, 500)
+
+[node name="BlackSmith" parent="." unique_id=1035286810 instance=ExtResource("2_7sh0f")]
+position = Vector2(1400, 900)
+
+[node name="GuildHall" parent="." unique_id=116330280 instance=ExtResource("3_pa23k")]
+position = Vector2(700, 500)
+
+[node name="PlayerHouse" parent="." unique_id=1782140116 instance=ExtResource("4_oiag1")]
+position = Vector2(200, 300)
+
+[node name="InnTavern" parent="." unique_id=1197881546 instance=ExtResource("5_gktdk")]
+position = Vector2(800, 300)
+
+[node name="ElderHouse" parent="." unique_id=164381257 instance=ExtResource("6_a655f")]
+position = Vector2(600, 100)
+
+[node name="TrainingGrounds" parent="." unique_id=81885336 instance=ExtResource("7_kcivn")]
+position = Vector2(300, 150)
+
+[node name="Tree" parent="." unique_id=331852306 instance=ExtResource("8_53v4c")]
+position = Vector2(150, 200)
+
+[node name="Tree2" parent="." unique_id=912935731 instance=ExtResource("8_53v4c")]
+position = Vector2(900, 150)
+
+[node name="Tree3" parent="." unique_id=1081331496 instance=ExtResource("8_53v4c")]
+position = Vector2(250, 450)
+
+[node name="Tree4" parent="." unique_id=1586720034 instance=ExtResource("8_53v4c")]
+position = Vector2(650, 550)
+
+[node name="Tree5" parent="." unique_id=737737094 instance=ExtResource("8_53v4c")]
+position = Vector2(100, 400)
+
+[node name="Tree6" parent="." unique_id=533353649 instance=ExtResource("8_53v4c")]
+position = Vector2(850, 500)
+
+[node name="Tree7" parent="." unique_id=74065403 instance=ExtResource("8_53v4c")]
+position = Vector2(180, 580)
+
+[node name="Tree8" parent="." unique_id=1851279227 instance=ExtResource("8_53v4c")]
+position = Vector2(920, 420)
+
+[node name="Tree9" parent="." unique_id=641829575 instance=ExtResource("8_53v4c")]
+position = Vector2(50, 100)
+
+[node name="Tree10" parent="." unique_id=21552679 instance=ExtResource("8_53v4c")]
+position = Vector2(950, 250)
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1970098962 groups=["player_spawn"]]
+position = Vector2(400, 350)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=108721126]
+limit_left = 0
+limit_top = 5
+limit_right = 2000
+limit_bottom = 2000
+
+[node name="Player" parent="." unique_id=1202437955 instance=ExtResource("9_7sh0f")]
+position = Vector2(363, 346)
