@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://b0t6y2eyypdb8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o7em6"]
+size = Vector2(120, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kra6"]
+size = Vector2(30, 15)
+
+[node name="GuildHall" type="Node2D" unique_id=116330280]
+
+[node name="Body" type="ColorRect" parent="." unique_id=772516264]
+offset_left = -60.0
+offset_top = -50.0
+offset_right = 60.0
+offset_bottom = 50.0
+color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+
+[node name="roof" type="ColorRect" parent="." unique_id=1891891068]
+offset_left = -65.0
+offset_top = -75.0
+offset_right = 65.0
+offset_bottom = -50.0
+color = Color(0.16862746, 0.29803923, 0.49411765, 1)
+
+[node name="FlagPole" type="ColorRect" parent="." unique_id=15692264]
+offset_left = -1.5
+offset_top = -100.0
+offset_right = 1.5
+offset_bottom = -50.0
+color = Color(0.39607844, 0.2627451, 0.12941177, 1)
+
+[node name="Flag" type="ColorRect" parent="." unique_id=749540314]
+offset_top = -110.0
+offset_right = 20.0
+offset_bottom = -95.0
+color = Color(0.8627451, 0.078431375, 0.23529412, 1)
+
+[node name="Door" type="ColorRect" parent="." unique_id=1097390317]
+offset_left = -12.5
+offset_top = 15.0
+offset_right = 12.5
+offset_bottom = 50.0
+color = Color(0.10980392, 0.10980392, 0.10980392, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1053294067]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=534135913]
+shape = SubResource("RectangleShape2D_o7em6")
+
+[node name="EntranceArea" type="Area2D" parent="." unique_id=2060741303]
+position = Vector2(0, 55)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntranceArea" unique_id=1835786177]
+shape = SubResource("RectangleShape2D_2kra6")
+
+[node name="Label" type="Label" parent="." unique_id=688037005]
+offset_left = -35.0
+offset_top = -90.0
+offset_right = 41.0
+offset_bottom = -67.0
+text = "Guild Hall"
