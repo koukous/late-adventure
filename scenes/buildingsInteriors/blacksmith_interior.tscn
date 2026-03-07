@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cegwe11lpx4iy" path="res://scripts/global/exist_door.gd" id="1_hegpg"]
 [ext_resource type="Script" uid="uid://c3kpsn1i1tgqh" path="res://scripts/global/npc.gd" id="2_u0wi3"]
 [ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="3_ucpqw"]
+[ext_resource type="PackedScene" uid="uid://blrghfb0id5hc" path="res://scenes/global/GlobalUI.tscn" id="4_q0po5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0wi3"]
 size = Vector2(60, 30)
@@ -93,3 +94,5 @@ text = "Press E to talk"
 
 [node name="Player" parent="." unique_id=1202437955 instance=ExtResource("3_ucpqw")]
 position = Vector2(320, 400)
+
+[node name="GlobalUi" parent="." unique_id=1810816273 instance=ExtResource("4_q0po5")]
