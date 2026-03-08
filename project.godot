@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="late adventure"
-run/main_scene="uid://dpqdp8ukrutmk"
+run/main_scene="uid://bkkwnmymilnn5"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,6 +21,10 @@ InventoryManager="*uid://cyvucvcuw4nnl"
 GlobalUi="*uid://ljqwv3c267ff"
 SceneManager="*uid://7ubni2pn1s2n"
 DialogueUI="*uid://khsalhy0nbt4"
+
+[display]
+
+window/size/mode=3
 
 [file_customization]
 

@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://76at8rlyrjop"]
+
+[ext_resource type="PackedScene" uid="uid://lb31uy8m4d78" path="res://scenes/buildings/tree.tscn" id="1_p0ori"]
+[ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="2_0nknu"]
+[ext_resource type="PackedScene" uid="uid://blrghfb0id5hc" path="res://scenes/global/GlobalUI.tscn" id="3_qrpwe"]
+[ext_resource type="PackedScene" uid="uid://4035bihmolck" path="res://scenes/Enemy.tscn" id="4_qrpwe"]
+[ext_resource type="Script" uid="uid://cegwe11lpx4iy" path="res://scripts/global/exist_door.gd" id="5_qssl3"]
+[ext_resource type="PackedScene" uid="uid://7ihs34pgrouf" path="res://scenes/global/ResourceFlower.tscn" id="6_ojn3t"]
+[ext_resource type="PackedScene" uid="uid://dyb0vlc76fbf1" path="res://scenes/global/resourceWood.tscn" id="7_61dda"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojn3t"]
+size = Vector2(100, 60)
+
+[node name="Wilderness" type="Node2D" unique_id=97569403]
+
+[node name="Ground" type="ColorRect" parent="." unique_id=12076778]
+offset_left = -1500.0
+offset_top = -1535.0
+offset_right = 1500.0
+offset_bottom = 1465.0
+color = Color(0.1764706, 0.3137255, 0.08627451, 1)
+
+[node name="Tree" parent="." unique_id=331852306 instance=ExtResource("1_p0ori")]
+position = Vector2(558, 254)
+
+[node name="Tree2" parent="." unique_id=1318504770 instance=ExtResource("1_p0ori")]
+position = Vector2(-481, 143)
+
+[node name="Tree3" parent="." unique_id=1711845003 instance=ExtResource("1_p0ori")]
+position = Vector2(609, -468)
+
+[node name="Tree4" parent="." unique_id=1486523723 instance=ExtResource("1_p0ori")]
+position = Vector2(-344, -327)
+
+[node name="Tree5" parent="." unique_id=693816580 instance=ExtResource("1_p0ori")]
+position = Vector2(200, -514)
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1992827916 groups=["player_spawn"]]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=738757767]
+enabled = false
+limit_left = -1500
+limit_top = -1500
+limit_right = 1500
+limit_bottom = 1500
+
+[node name="Player" parent="." unique_id=1202437955 instance=ExtResource("2_0nknu")]
+
+[node name="GlobalUi" parent="." unique_id=1810816273 instance=ExtResource("3_qrpwe")]
+
+[node name="Enemy" parent="." unique_id=157909595 instance=ExtResource("4_qrpwe")]
+position = Vector2(591, -313)
+
+[node name="Enemy2" parent="." unique_id=1993720399 instance=ExtResource("4_qrpwe")]
+position = Vector2(-537, -91)
+
+[node name="ReturnGate" type="Area2D" parent="." unique_id=1526667867]
+position = Vector2(0, -700)
+script = ExtResource("5_qssl3")
+spawn_position_in_village = Vector2(400, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnGate" unique_id=459001442]
+position = Vector2(4, -54)
+shape = SubResource("RectangleShape2D_ojn3t")
+
+[node name="GateVisual" type="ColorRect" parent="." unique_id=2026315147]
+offset_left = -45.0
+offset_top = -782.0
+offset_right = 55.0
+offset_bottom = -722.0
+color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1356497281]
+offset_left = -21.0
+offset_top = -803.0
+offset_right = 57.0
+offset_bottom = -780.0
+text = "To Village "
+
+[node name="ResourceFlower" parent="." unique_id=1353171926 instance=ExtResource("6_ojn3t")]
+position = Vector2(-847, -375)
+
+[node name="ResourceFlower2" parent="." unique_id=1429803929 instance=ExtResource("6_ojn3t")]
+position = Vector2(341, -435)
+
+[node name="ResourceWood" parent="." unique_id=1847252650 instance=ExtResource("7_61dda")]
+position = Vector2(669, 36)

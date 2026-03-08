@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dyb0vlc76fbf1"]
+
+[ext_resource type="Script" uid="uid://djepofernmmux" path="res://scripts/gatherable_resource.gd" id="1_uyq4f"]
+[ext_resource type="Script" uid="uid://c4xjbmk0lvhi7" path="res://scripts/item_data.gd" id="2_gpdo8"]
+
+[sub_resource type="Resource" id="Resource_hv3yj"]
+script = ExtResource("2_gpdo8")
+item_name = "wood"
+description = "wood log"
+metadata/_custom_type_script = "uid://c4xjbmk0lvhi7"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_13xww"]
+radius = 15.0
+
+[node name="ResourceWood" type="Area2D" unique_id=562034828]
+script = ExtResource("1_uyq4f")
+resource_item = SubResource("Resource_hv3yj")
+
+[node name="WoodVisual" type="ColorRect" parent="." unique_id=41329013]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0.5701847, 0.19264224, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1618677795]
+shape = SubResource("CircleShape2D_13xww")
+
+[node name="Label" type="Label" parent="." unique_id=238017876]
+visible = false
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 90.0
+offset_bottom = -17.0
+theme_override_font_sizes/font_size = 12
+text = "Press E to gather"

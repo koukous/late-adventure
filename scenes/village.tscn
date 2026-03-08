@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://lb31uy8m4d78" path="res://scenes/buildings/tree.tscn" id="8_53v4c"]
 [ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="9_7sh0f"]
 [ext_resource type="PackedScene" uid="uid://blrghfb0id5hc" path="res://scenes/global/GlobalUI.tscn" id="10_pa23k"]
+[ext_resource type="Script" uid="uid://cnvx2stfmam87" path="res://scripts/global/building_entrence.gd" id="11_oiag1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pa23k"]
+size = Vector2(120, 40)
 
 [node name="Village" type="Node2D" unique_id=1882130929]
 y_sort_enabled = true
@@ -85,3 +89,27 @@ limit_bottom = 2000
 position = Vector2(363, 346)
 
 [node name="GlobalUi" parent="." unique_id=1810816273 instance=ExtResource("10_pa23k")]
+
+[node name="WildernessGate" type="Area2D" parent="." unique_id=1476512276]
+position = Vector2(400, 50)
+script = ExtResource("11_oiag1")
+interior_scene_path = "uid://76at8rlyrjop"
+spawn_position_in_interior = Vector2(0, 650)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WildernessGate" unique_id=222227422]
+position = Vector2(0, -27)
+shape = SubResource("RectangleShape2D_pa23k")
+
+[node name="ColorRect" type="ColorRect" parent="WildernessGate" unique_id=288269689]
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = -20.0
+color = Color(0.39607844, 0.2627451, 0.12941177, 1)
+
+[node name="Label" type="Label" parent="WildernessGate" unique_id=1729745503]
+offset_left = 76.0
+offset_top = -44.0
+offset_right = 254.0
+offset_bottom = -21.0
+text = "To Wilderness (Press E)"

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://7ihs34pgrouf"]
+
+[ext_resource type="Script" uid="uid://djepofernmmux" path="res://scripts/gatherable_resource.gd" id="1_vin3y"]
+[ext_resource type="Resource" uid="uid://p4ms43hxqqo5" path="res://resources/flower.tres" id="2_13xww"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_13xww"]
+radius = 15.0
+
+[node name="ResourceFlower" type="Area2D" unique_id=1871797296]
+script = ExtResource("1_vin3y")
+resource_item = ExtResource("2_13xww")
+
+[node name="FlowerVisual" type="ColorRect" parent="." unique_id=41329013]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(1, 0.4117647, 0.7058824, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1618677795]
+shape = SubResource("CircleShape2D_13xww")
+
+[node name="Label" type="Label" parent="." unique_id=238017876]
+visible = false
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 90.0
+offset_bottom = -17.0
+theme_override_font_sizes/font_size = 12
+text = "Press E to gather"
