@@ -40,6 +40,57 @@ func _ready():
 	current_health = max_health
 	attack_hitbox.disabled = true
 	health_changed.emit(current_health, max_health)
+	
+	# Get equipment manager
+	var equipment_manager = get_node_or_null("/root/EquipmentManager")
+	if equipment_manager:
+		equipment_manager.stats_updated.connect(_on_equipment_stats_updated)
+		
+	# TEST: Add equipment items
+	await get_tree().create_timer(1.0).timeout  # Wait for managers to load
+	
+	var inventory = get_node("/root/InventoryManager")
+	if inventory:
+		var sword = load("res://resources/equipement/iron_sword.tres")
+		var helmet = load("res://resources/equipement/leather_helmet.tres")
+		#var chest = load("res://leather_chest.tres")
+		
+		inventory.add_item(sword, 1)
+		inventory.add_item(helmet, 1)
+		#inventory.add_item(chest, 1)
+		
+		print("Test equipment added to inventory!")
+		
+			# Wait a moment for autoloads to load
+	await get_tree().create_timer(0.5).timeout
+	
+	# Test if EquipmentManager exists
+	var eq = get_node_or_null("/root/EquipmentManager")
+	if eq:
+		print("✅ EquipmentManager FOUND!")
+	else:
+		print("❌ EquipmentManager NOT FOUND!")
+	
+	# List all autoloads
+	print("=== All Root Nodes ===")
+	for child in get_tree().root.get_children():
+		print("  - ", child.name)
+		
+	await get_tree().create_timer(2.0).timeout
+	
+	# Test equipping directly
+	var eq_manager = get_node("/root/EquipmentManager")
+	var sword = load("res://iron_sword.tres")
+	
+	if eq_manager and sword:
+		print("=== DIRECT EQUIP TEST ===")
+		print("Sword type: ", sword.get_class())
+		print("Is EquipmentData: ", sword is EquipmentData)
+		
+		if sword is EquipmentData:
+			eq_manager.equip_item(sword)
+			print("Total damage after equip: ", eq_manager.total_damage)
+			print("Total strength after equip: ", eq_manager.total_strength)
 
 func _physics_process(delta):
 	update_timers(delta)
@@ -187,3 +238,18 @@ func update_animation():
 				animated_sprite.play("walk_down")
 	else:
 		animated_sprite.play("idle")
+		
+func _on_equipment_stats_updated():
+	# Recalculate damage with equipment bonuses
+	update_combat_stats()
+
+func update_combat_stats():
+	var equipment_manager = get_node_or_null("/root/EquipmentManager")
+	if equipment_manager:
+		var base_damage = 10  # Your base damage
+		var bonus_damage = equipment_manager.get_total_damage_bonus()
+		var total_damage = base_damage + bonus_damage
+		
+		print("Total damage: ", total_damage, " (Base: ", base_damage, " + Equipment: ", bonus_damage, ")")
+		
+		# Use this total_damage in your attack code

@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://ljqwv3c267ff" path="res://scripts/global_ui.gd" id="1_kkq6e"]
 [ext_resource type="PackedScene" uid="uid://5yr8sq54vd8q" path="res://scenes/InventoryUI.tscn" id="2_lnbkq"]
 [ext_resource type="PackedScene" uid="uid://brwq0x8x8cs4g" path="res://scenes/HealthUI.tscn" id="3_5faa8"]
+[ext_resource type="PackedScene" uid="uid://cfonpces7xj4r" path="res://scenes/global/EquipmentUI.tscn" id="4_lnbkq"]
 
-[node name="GlobalUi" type="CanvasLayer" unique_id=1810816273]
+[node name="GlobalUI" type="CanvasLayer" unique_id=1810816273]
 script = ExtResource("1_kkq6e")
 
 [node name="InventoryUI" parent="." unique_id=49627175 instance=ExtResource("2_lnbkq")]
@@ -17,3 +18,5 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HealthUI" parent="." unique_id=1590557099 instance=ExtResource("3_5faa8")]
+
+[node name="EquipmentUI" parent="." unique_id=425735404 instance=ExtResource("4_lnbkq")]

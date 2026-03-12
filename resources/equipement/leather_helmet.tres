@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" format=3 uid="uid://b0xgqs3relxlg"]
+
+[ext_resource type="Script" uid="uid://ch21jrxvw46lr" path="res://scripts/global/equipement_data.gd" id="1_xmmpu"]
+
+[resource]
+script = ExtResource("1_xmmpu")
+equipment_type = 2
+vitality_bonus = 3
+defense_bonus = 5
+item_name = "Leather Chest Armor"
+description = "Light body armor"
+metadata/_custom_type_script = "uid://ch21jrxvw46lr"

@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://cfonpces7xj4r"]
+
+[ext_resource type="Script" uid="uid://b11lnhs3tqs42" path="res://scripts/global/equipment_ui.gd" id="1_h3f36"]
+
+[node name="EquipmentUI" type="Control" unique_id=425735404]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h3f36")
+
+[node name="Panel" type="Panel" parent="." unique_id=1760547820]
+layout_mode = 0
+offset_left = 850.0
+offset_top = 50.0
+offset_right = 1250.0
+offset_bottom = 750.0
+
+[node name="Equipment" type="Label" parent="Panel" unique_id=440294316]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+pivot_offset_ratio = Vector2(150, 10)
+theme_override_font_sizes/font_size = 20
+text = "Equipment"
+
+[node name="SlotsContainer" type="VBoxContainer" parent="Panel" unique_id=1474194721]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 50.0
+offset_right = 270.0
+offset_bottom = 450.0
+
+[node name="WeaponSlot" type="Panel" parent="Panel/SlotsContainer" unique_id=1322094907]
+custom_minimum_size = Vector2(230, 100)
+layout_mode = 2
+
+[node name="Weapon" type="Label" parent="Panel/SlotsContainer/WeaponSlot" unique_id=93306369]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 69.0
+offset_bottom = 28.0
+text = "Weapon"
+
+[node name="HelmetSlot" type="Panel" parent="Panel/SlotsContainer" unique_id=600928595]
+custom_minimum_size = Vector2(230, 100)
+layout_mode = 2
+
+[node name="Helmet" type="Label" parent="Panel/SlotsContainer/HelmetSlot" unique_id=71550702]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 62.0
+offset_bottom = 28.0
+text = "Helmet"
+
+[node name="ChestSlot" type="Panel" parent="Panel/SlotsContainer" unique_id=584860440]
+custom_minimum_size = Vector2(230, 100)
+layout_mode = 2
+
+[node name="Chest" type="Label" parent="Panel/SlotsContainer/ChestSlot" unique_id=391788084]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 49.0
+offset_bottom = 28.0
+text = "Chest"
+
+[node name="LegsSlot" type="Panel" parent="Panel/SlotsContainer" unique_id=1800738399]
+custom_minimum_size = Vector2(230, 100)
+layout_mode = 2
+
+[node name="Legs" type="Label" parent="Panel/SlotsContainer/LegsSlot" unique_id=2042927592]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 28.0
+text = "Legs"
+
+[node name="BootsSlot" type="Panel" parent="Panel/SlotsContainer" unique_id=989126018]
+custom_minimum_size = Vector2(230, 100)
+layout_mode = 2
+
+[node name="Boots" type="Label" parent="Panel/SlotsContainer/BootsSlot" unique_id=806490506]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 50.0
+offset_bottom = 28.0
+text = "Boots"
+
+[node name="AccessorySlot" type="Panel" parent="Panel/SlotsContainer" unique_id=1579745492]
+custom_minimum_size = Vector2(230, 100)
+layout_mode = 2
+
+[node name="Accessory" type="Label" parent="Panel/SlotsContainer/AccessorySlot" unique_id=392384754]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 82.0
+offset_bottom = 28.0
+text = "Accessory"
+
+[node name="StatsPanel" type="Panel" parent="." unique_id=1754695985]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 50.0
+offset_right = 380.0
+offset_bottom = 250.0
+
+[node name="StrLabel" type="Label" parent="StatsPanel" unique_id=1065850503]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 65.0
+offset_bottom = 33.0
+text = "STR: +0"
+
+[node name="DexLabel" type="Label" parent="StatsPanel" unique_id=817805769]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 30.0
+offset_right = 50.0
+offset_bottom = 53.0
+text = "DEX: +0"
+
+[node name="VitLabel" type="Label" parent="StatsPanel" unique_id=1379610742]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 50.0
+offset_bottom = 73.0
+text = "VIT: +0"
+
+[node name="IntLabel" type="Label" parent="StatsPanel" unique_id=1388472787]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 70.0
+offset_right = 64.0
+offset_bottom = 93.0
+text = "INT: +0"
+
+[node name="DmgLabel" type="Label" parent="StatsPanel" unique_id=641789743]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 100.0
+offset_right = 50.0
+offset_bottom = 123.0
+text = "Damage: +0"
+
+[node name="DefLabel" type="Label" parent="StatsPanel" unique_id=387899464]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 120.0
+offset_right = 101.0
+offset_bottom = 143.0
+text = "Defense: +0"

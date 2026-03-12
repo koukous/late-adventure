@@ -78,8 +78,16 @@ func _on_hit_by_attack(body):
 		take_damage(10)
 
 func take_damage(amount: int):
-	current_health -= amount
-	print("Enemy took ", amount, " damage! Health: ", current_health)
+	# Get player's equipment bonus
+	var equipment_manager = get_node_or_null("/root/EquipmentManager")
+	var bonus_damage = 0
+	if equipment_manager:
+		bonus_damage = equipment_manager.get_total_damage_bonus()
+	
+	var total_damage = amount + bonus_damage
+	
+	current_health -= total_damage  # ← Fixed to use current_health
+	print("Enemy took ", total_damage, " damage (", amount, " + ", bonus_damage, " from equipment). Health: ", current_health)
 	
 	# Play hurt sound!
 	if hurt_sound:

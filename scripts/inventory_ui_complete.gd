@@ -52,6 +52,7 @@ func update_inventory_display():
 		var quantity = item_info["quantity"]
 		
 		create_item_slot(item_data, quantity)
+		
 
 func create_item_slot(item_data: ItemData, quantity: int):
 	# Create panel for slot
@@ -99,6 +100,17 @@ func create_item_slot(item_data: ItemData, quantity: int):
 	slot_panel.mouse_exited.connect(_on_slot_unhover)
 	
 	grid_container.add_child(slot_panel)
+	
+	# NEW: Add right-click for equipment
+	if item_data is EquipmentData:
+		slot_panel.gui_input.connect(_on_slot_gui_input.bind(item_data))
+		
+	# Check if it's equipment
+	if item_data is EquipmentData:
+		print("Creating equipment slot for: ", item_data.item_name)
+		slot_panel.gui_input.connect(_on_slot_gui_input.bind(item_data))
+	else:
+		print("Creating regular item slot for: ", item_data.item_name)
 
 func _on_slot_hover(item_data: ItemData):
 	# Show tooltip
@@ -126,3 +138,32 @@ func get_item_tooltip(item_data: ItemData) -> String:
 	text += item_data.description + "\n"
 	text += "Type: " + item_data.item_type
 	return text
+	
+func _on_slot_gui_input(event: InputEvent, item: ItemData):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			print("Right-clicked on: ", item.item_name)
+			equip_item(item)
+
+func equip_item(item: ItemData):
+	if not item is EquipmentData:
+		print("ERROR: Not equipment!")
+		return
+	
+	print("Trying to equip: ", item.item_name)
+	
+	var equipment = item as EquipmentData
+	var equipment_manager = get_node_or_null("/root/EquipmentManager")
+	
+	if equipment_manager:
+		print("EquipmentManager found, equipping...")
+		# Remove from inventory
+		inventory_manager.remove_item(item.item_name, 1)
+		# Equip
+		equipment_manager.equip_item(equipment)
+		# Refresh display
+		update_inventory_display()
+		
+		print("Equipped: ", item.item_name)
+	else:
+		print("ERROR: EquipmentManager not found!")
