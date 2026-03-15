@@ -80,7 +80,7 @@ func _ready():
 	
 	# Test equipping directly
 	var eq_manager = get_node("/root/EquipmentManager")
-	var sword = load("res://iron_sword.tres")
+	var sword = load("res://resources/craftingRecipe/Iron_Sword_Recepi.tres")
 	
 	if eq_manager and sword:
 		print("=== DIRECT EQUIP TEST ===")
@@ -91,6 +91,24 @@ func _ready():
 			eq_manager.equip_item(sword)
 			print("Total damage after equip: ", eq_manager.total_damage)
 			print("Total strength after equip: ", eq_manager.total_strength)
+			
+	if inventory:
+		# Add crafting materials
+		var skin = load("res://resources/monster_skin.tres")
+		var bones = load("res://resources/bones.tres")
+		var flower = load("res://resources/flower.tres")
+		var wood = load("res://resources/wood.tres")
+		
+		if skin:
+			inventory.add_item(skin, 10)
+		if bones:
+			inventory.add_item(bones, 10)
+		if flower:
+			inventory.add_item(flower, 10)
+		if wood:
+			inventory.add_item(wood, 10)
+		
+		print("Test materials added!")
 
 func _physics_process(delta):
 	update_timers(delta)
@@ -253,3 +271,17 @@ func update_combat_stats():
 		print("Total damage: ", total_damage, " (Base: ", base_damage, " + Equipment: ", bonus_damage, ")")
 		
 		# Use this total_damage in your attack code
+
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		# Check if mouse is over UI
+		var ui_control = get_viewport().gui_get_focus_owner()
+		if ui_control:
+			return  # Mouse is on UI - don't attack
+		
+		# Check if any UI is visible
+		var crafting_ui = get_node_or_null("/root/CraftingUI")
+		if crafting_ui and crafting_ui.visible:
+			return  # Crafting UI open - don't attack
+		
+		start_attack()

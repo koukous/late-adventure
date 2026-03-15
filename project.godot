@@ -22,6 +22,7 @@ GlobalUi="*uid://ljqwv3c267ff"
 SceneManager="*uid://7ubni2pn1s2n"
 DialogueUI="*uid://khsalhy0nbt4"
 EquipmentManager="*uid://i8lbr2biceo4"
+CraftingUI="*uid://b30qgfgan8htt"
 
 [display]
 
