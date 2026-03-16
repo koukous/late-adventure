@@ -254,20 +254,20 @@ func refresh_display():
 
 # Add this at the bottom of your script
 
-# Override this to detect ALL mouse motion
-func _process(_delta):
-	if visible:
-		var mouse_pos = get_global_mouse_position()
-		# Check if mouse is over main panel area
-		if main_panel:
-			var panel_rect = Rect2(main_panel.global_position, main_panel.size)
-			if panel_rect.has_point(mouse_pos):
-				# Mouse is over panel - check buttons
-				for child in recipe_list_container.get_children():
-					if child is Button:
-						var btn_rect = Rect2(child.global_position, child.size)
-						if btn_rect.has_point(mouse_pos):
-							print("🎯 Mouse is over button: ", child.text)
+## Override this to detect ALL mouse motion
+#func _process(_delta):
+	#if visible:
+		#var mouse_pos = get_global_mouse_position()
+		## Check if mouse is over main panel area
+		#if main_panel:
+			#var panel_rect = Rect2(main_panel.global_position, main_panel.size)
+			#if panel_rect.has_point(mouse_pos):
+				## Mouse is over panel - check buttons
+				#for child in recipe_list_container.get_children():
+					#if child is Button:
+						#var btn_rect = Rect2(child.global_position, child.size)
+						#if btn_rect.has_point(mouse_pos):
+							#print("🎯 Mouse is over button: ", child.text)
 
 # Try overriding unhandled input
 func _unhandled_input(event):
@@ -289,7 +289,7 @@ func _unhandled_input(event):
 
 func _input(event):
 	if visible and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		print("🔴 Click detected!")
+		#print("🔴 Click detected!")
 		
 		# Check each button
 		for i in recipe_list_container.get_child_count():
@@ -298,10 +298,10 @@ func _input(event):
 				var local_mouse = child.get_local_mouse_position()
 				var is_inside = Rect2(Vector2.ZERO, child.size).has_point(local_mouse)
 				
-				print("  ", child.text, " - inside: ", is_inside)
+				#print("  ", child.text, " - inside: ", is_inside)
 				
 				if is_inside:
-					print("  ✅ BUTTON CLICKED: ", child.text)
+					#print("  ✅ BUTTON CLICKED: ", child.text)
 					_on_recipe_selected(recipes[i])
 					get_viewport().set_input_as_handled()
 					return

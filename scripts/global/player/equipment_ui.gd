@@ -42,9 +42,6 @@ func _ready():
 	update_all_slots()
 	update_stats_display()
 	
-	# DEBUG: Print scene tree
-	print("=== EQUIPMENT UI SCENE TREE ===")
-	print_node_tree(self)
 
 func print_node_tree(node: Node, indent: String = "") -> void:
 	print(indent + node.name + " (" + node.get_class() + ")")
@@ -60,14 +57,8 @@ func find_ui_nodes():
 	boots_slot = get_node_or_null("Panel/SlotsContainer/BootsSlot")
 	accessory_slot = get_node_or_null("Panel/SlotsContainer/AccessorySlot")
 	
-	# DEBUG: Check if nodes found
-	print("=== Equipment UI Nodes ===")
-	print("WeaponSlot found:", weapon_slot != null)
-	print("HelmetSlot found:", helmet_slot != null)
-	
 	# Find stats panel
 	stats_panel = get_node_or_null("StatsPanel")
-	print("StatsPanel found:", stats_panel != null)
 	
 	if stats_panel:
 		str_label = stats_panel.get_node_or_null("StrLabel")
@@ -77,9 +68,6 @@ func find_ui_nodes():
 		dmg_label = stats_panel.get_node_or_null("DmgLabel")
 		def_label = stats_panel.get_node_or_null("DefLabel")
 		
-		# DEBUG
-		print("StrLabel found:", str_label != null)
-		print("DmgLabel found:", dmg_label != null)
 
 func update_all_slots():
 	if not equipment_manager:

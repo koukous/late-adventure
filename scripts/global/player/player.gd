@@ -46,22 +46,22 @@ func _ready():
 	if equipment_manager:
 		equipment_manager.stats_updated.connect(_on_equipment_stats_updated)
 		
-	# TEST: Add equipment items
+	# TEST: Add equipment items!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	await get_tree().create_timer(1.0).timeout  # Wait for managers to load
 	
 	var inventory = get_node("/root/InventoryManager")
 	if inventory:
+		
+		#adding equipement for test
 		var sword = load("res://resources/equipement/iron_sword.tres")
 		var helmet = load("res://resources/equipement/leather_helmet.tres")
 		#var chest = load("res://leather_chest.tres")
-		
 		inventory.add_item(sword, 1)
 		inventory.add_item(helmet, 1)
-		#inventory.add_item(chest, 1)
-		
 		print("Test equipment added to inventory!")
+		#end adding for test
 		
-			# Wait a moment for autoloads to load
+	# Wait a moment for autoloads to load
 	await get_tree().create_timer(0.5).timeout
 	
 	# Test if EquipmentManager exists
@@ -109,6 +109,8 @@ func _ready():
 			inventory.add_item(wood, 10)
 		
 		print("Test materials added!")
+		
+	# TEST: Add equipment items!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 func _physics_process(delta):
 	update_timers(delta)
