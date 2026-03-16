@@ -5,6 +5,12 @@ extends CanvasLayer
 @onready var equipment_ui = $EquipmentUI  # ← THIS LINE
 
 func _ready():
+	print("=== GlobalUI Debug ===")
+	print("My name: ", name)
+	print("My children count: ", get_child_count())
+	
+	for child in get_children():
+		print("  Child: ", child.name, " (", child.get_class(), ")")
 	if inventory_ui:
 		inventory_ui.visible = false
 	if equipment_ui:

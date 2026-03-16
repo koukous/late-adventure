@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://khsalhy0nbt4"]
 
-[ext_resource type="Script" uid="uid://fh837kwpu1ua" path="res://scripts/global/dialogue_ui.gd" id="1_1xkok"]
+[ext_resource type="Script" uid="uid://fh837kwpu1ua" path="res://scripts/global/core/dialogue_ui.gd" id="1_1xkok"]
 
 [node name="DialogueUi" type="CanvasLayer" unique_id=1030456280]
 script = ExtResource("1_1xkok")

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EquipmentData" format=3 uid="uid://b0xgqs3relxlg"]
 
-[ext_resource type="Script" uid="uid://ch21jrxvw46lr" path="res://scripts/global/equipement_data.gd" id="1_xmmpu"]
+[ext_resource type="Script" uid="uid://ch21jrxvw46lr" path="res://scripts/global/clases/equipement_data.gd" id="1_xmmpu"]
 
 [resource]
 script = ExtResource("1_xmmpu")

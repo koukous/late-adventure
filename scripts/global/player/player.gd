@@ -94,10 +94,10 @@ func _ready():
 			
 	if inventory:
 		# Add crafting materials
-		var skin = load("res://resources/monster_skin.tres")
-		var bones = load("res://resources/bones.tres")
-		var flower = load("res://resources/flower.tres")
-		var wood = load("res://resources/wood.tres")
+		var skin = load("res://resources/materials/monster_skin.tres")
+		var bones = load("res://resources/materials/bones.tres")
+		var flower = load("res://resources/materials/flower.tres")
+		var wood = load("res://resources/materials/wood.tres")
 		
 		if skin:
 			inventory.add_item(skin, 10)

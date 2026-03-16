@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bkpyaft2y2e6y"]
 
-[ext_resource type="Script" uid="uid://bsm5sds6fdnot" path="res://scripts/player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://bsm5sds6fdnot" path="res://scripts/global/player/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://chbbf35vbmikf" path="res://sprites/character-spritesheet.png" id="2_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c0yq8rahgxg5t" path="res://sprites/SHADOW.png" id="2_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://mcxyuakpaini" path="res://sounds/player/sword_sfx.wav" id="3_qlg0r"]

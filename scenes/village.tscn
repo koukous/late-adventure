@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://lb31uy8m4d78" path="res://scenes/buildings/tree.tscn" id="8_53v4c"]
 [ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="9_7sh0f"]
 [ext_resource type="PackedScene" uid="uid://blrghfb0id5hc" path="res://scenes/global/GlobalUI.tscn" id="10_pa23k"]
-[ext_resource type="Script" uid="uid://cnvx2stfmam87" path="res://scripts/global/building_entrence.gd" id="11_oiag1"]
+[ext_resource type="Script" uid="uid://cnvx2stfmam87" path="res://scripts/global/moveto/building_entrence.gd" id="11_oiag1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pa23k"]
 size = Vector2(120, 40)

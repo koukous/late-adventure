@@ -95,20 +95,26 @@ func create_item_slot(item_data: ItemData, quantity: int):
 	quantity_label.mouse_filter = Control.MOUSE_FILTER_IGNORE  # Pass through to parent panel
 	slot_panel.add_child(quantity_label)
 	
-	# Connect hover events for tooltip
-	slot_panel.mouse_entered.connect(_on_slot_hover.bind(item_data))
-	slot_panel.mouse_exited.connect(_on_slot_unhover)
+	# Mouse hover for tooltip - check before connecting
+	if not slot_panel.mouse_entered.is_connected(_on_slot_hover):
+		slot_panel.mouse_entered.connect(_on_slot_hover.bind(item_data))
+	
+	if not slot_panel.mouse_exited.is_connected(_on_slot_unhover):
+		slot_panel.mouse_exited.connect(_on_slot_unhover)
 	
 	grid_container.add_child(slot_panel)
 	
-	# NEW: Add right-click for equipment
+	# Connect signals - only connect if NOT already connected
 	if item_data is EquipmentData:
-		slot_panel.gui_input.connect(_on_slot_gui_input.bind(item_data))
+		if not slot_panel.gui_input.is_connected(_on_slot_gui_input):
+			slot_panel.gui_input.connect(_on_slot_gui_input.bind(item_data))
 		
 	# Check if it's equipment
 	if item_data is EquipmentData:
 		print("Creating equipment slot for: ", item_data.item_name)
-		slot_panel.gui_input.connect(_on_slot_gui_input.bind(item_data))
+		if not slot_panel.gui_input.is_connected(_on_slot_gui_input):
+			slot_panel.gui_input.disconnect(_on_slot_gui_input.bind(item_data))
+			
 	else:
 		print("Creating regular item slot for: ", item_data.item_name)
 

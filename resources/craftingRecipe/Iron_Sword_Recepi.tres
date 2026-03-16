@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="CraftingRecipe" format=3 uid="uid://cm6pgxds5mhah"]
 
-[ext_resource type="Resource" uid="uid://p4ms43hxqqo5" path="res://resources/flower.tres" id="1_p6m1g"]
-[ext_resource type="Script" uid="uid://bur4qpiw5pdoo" path="res://scripts/global/crafting_recipe_simple.gd" id="1_y62nu"]
-[ext_resource type="Resource" uid="uid://sgaalybxuklw" path="res://resources/wood.tres" id="2_bdq2d"]
+[ext_resource type="Resource" uid="uid://p4ms43hxqqo5" path="res://resources/materials/flower.tres" id="1_p6m1g"]
+[ext_resource type="Script" uid="uid://bur4qpiw5pdoo" path="res://scripts/global/clases/crafting_recipe_simple.gd" id="1_y62nu"]
+[ext_resource type="Resource" uid="uid://sgaalybxuklw" path="res://resources/materials/wood.tres" id="2_bdq2d"]
 [ext_resource type="Resource" uid="uid://b0r1xnp2pabqw" path="res://resources/equipement/iron_sword.tres" id="3_felxm"]
 
 [resource]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://brwq0x8x8cs4g"]
 
-[ext_resource type="Script" uid="uid://c2ppssdgsfk52" path="res://scripts/healt_ui.gd" id="1_1b0h5"]
+[ext_resource type="Script" uid="uid://c2ppssdgsfk52" path="res://scripts/global/core/healt_ui.gd" id="1_1b0h5"]
 
 [node name="HealthUI" type="CanvasLayer" unique_id=1590557099]
 script = ExtResource("1_1b0h5")
