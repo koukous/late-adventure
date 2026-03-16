@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://10fh75eob0sw"]
 
-[ext_resource type="Script" uid="uid://dhio87ybrr6s6" path="res://scripts/healt_pickup.gd" id="1_owlvx"]
+[ext_resource type="Script" uid="uid://dhio87ybrr6s6" path="res://scripts/global/player/healt_pickup.gd" id="1_owlvx"]
 [ext_resource type="AudioStream" uid="uid://dxswnhillahes" path="res://sounds/pickups/SoundBonus.wav" id="2_xf6ft"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_brdiy"]

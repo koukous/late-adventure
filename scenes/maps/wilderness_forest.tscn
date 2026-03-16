@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="2_0nknu"]
 [ext_resource type="PackedScene" uid="uid://blrghfb0id5hc" path="res://scenes/global/GlobalUI.tscn" id="3_qrpwe"]
 [ext_resource type="PackedScene" uid="uid://4035bihmolck" path="res://scenes/Enemy.tscn" id="4_qrpwe"]
-[ext_resource type="Script" uid="uid://cegwe11lpx4iy" path="res://scripts/global/exist_door.gd" id="5_qssl3"]
+[ext_resource type="Script" uid="uid://cegwe11lpx4iy" path="res://scripts/global/moveto/exist_door.gd" id="5_qssl3"]
 [ext_resource type="PackedScene" uid="uid://7ihs34pgrouf" path="res://scenes/global/ResourceFlower.tscn" id="6_ojn3t"]
 [ext_resource type="PackedScene" uid="uid://dyb0vlc76fbf1" path="res://scenes/global/resourceWood.tscn" id="7_61dda"]
 

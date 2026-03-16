@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://7ihs34pgrouf"]
 
-[ext_resource type="Script" uid="uid://djepofernmmux" path="res://scripts/gatherable_resource.gd" id="1_vin3y"]
-[ext_resource type="Resource" uid="uid://p4ms43hxqqo5" path="res://resources/flower.tres" id="2_13xww"]
+[ext_resource type="Script" uid="uid://djepofernmmux" path="res://scripts/global/player/gatherable_resource.gd" id="1_vin3y"]
+[ext_resource type="Resource" uid="uid://p4ms43hxqqo5" path="res://resources/materials/flower.tres" id="2_13xww"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_13xww"]
 radius = 15.0

@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 InventoryManager="*uid://cyvucvcuw4nnl"
-GlobalUi="*uid://ljqwv3c267ff"
+GlobalUI="*uid://blrghfb0id5hc"
 SceneManager="*uid://7ubni2pn1s2n"
 DialogueUI="*uid://khsalhy0nbt4"
 EquipmentManager="*uid://i8lbr2biceo4"

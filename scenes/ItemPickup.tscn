@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b7x5h0bi8w647"]
 
-[ext_resource type="Script" uid="uid://bc3v1m4gbict2" path="res://scripts/item_pickup.gd" id="1_a0vs4"]
-[ext_resource type="Resource" uid="uid://sgaalybxuklw" path="res://resources/wood.tres" id="2_1m3bo"]
+[ext_resource type="Script" uid="uid://bc3v1m4gbict2" path="res://scripts/global/player/item_pickup.gd" id="1_a0vs4"]
+[ext_resource type="Resource" uid="uid://sgaalybxuklw" path="res://resources/materials/wood.tres" id="2_1m3bo"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_a0vs4"]
 size = Vector2(16, 16)

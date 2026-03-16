@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b0ha4qico7hb"]
 
-[ext_resource type="Script" uid="uid://cnvx2stfmam87" path="res://scripts/global/building_entrence.gd" id="1_3nfoi"]
+[ext_resource type="Script" uid="uid://cnvx2stfmam87" path="res://scripts/global/moveto/building_entrence.gd" id="1_3nfoi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imbdx"]
 size = Vector2(100, 25)
