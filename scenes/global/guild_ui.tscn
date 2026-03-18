@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dfk6rgd4em7nt"]
+
+[ext_resource type="Script" uid="uid://ciupigu2ogd6f" path="res://scripts/global/guild/guild_ui.gd" id="1_eu0id"]
+
+[node name="GuildUI" type="Control" unique_id=1477175620]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eu0id")
