@@ -23,6 +23,9 @@ SceneManager="*uid://7ubni2pn1s2n"
 DialogueUI="*uid://khsalhy0nbt4"
 EquipmentManager="*uid://i8lbr2biceo4"
 CraftingUI="*uid://b30qgfgan8htt"
+GlobalUi="*uid://ljqwv3c267ff"
+GuildManager="*uid://doy3q3jxlr3vv"
+GuildUI="*uid://dfk6rgd4em7nt"
 
 [display]
 
