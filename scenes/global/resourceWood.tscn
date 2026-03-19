@@ -1,20 +1,14 @@
 [gd_scene format=3 uid="uid://dyb0vlc76fbf1"]
 
 [ext_resource type="Script" uid="uid://djepofernmmux" path="res://scripts/global/player/gatherable_resource.gd" id="1_uyq4f"]
-[ext_resource type="Script" uid="uid://c4xjbmk0lvhi7" path="res://scripts/global/clases/item_data.gd" id="2_gpdo8"]
-
-[sub_resource type="Resource" id="Resource_hv3yj"]
-script = ExtResource("2_gpdo8")
-item_name = "wood"
-description = "wood log"
-metadata/_custom_type_script = "uid://c4xjbmk0lvhi7"
+[ext_resource type="Resource" path="res://resources/materials/wood.tres" id="2_wood"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_13xww"]
 radius = 15.0
 
 [node name="ResourceWood" type="Area2D" unique_id=562034828]
 script = ExtResource("1_uyq4f")
-resource_item = SubResource("Resource_hv3yj")
+resource_item = ExtResource("2_wood")
 
 [node name="WoodVisual" type="ColorRect" parent="." unique_id=41329013]
 offset_left = -10.0

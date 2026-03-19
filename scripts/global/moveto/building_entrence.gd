@@ -40,17 +40,11 @@ func _process(_delta):
 		enter_building()
 
 func enter_building():
-	if interior_scene_path != "":
-		print("Entering ", building_name)
-		
-		# Get scene manager
-		var scene_manager = get_node_or_null("/root/SceneManager")
-		if scene_manager:
-			scene_manager.change_scene(interior_scene_path, spawn_position_in_interior)
-		else:
-			print("ERROR: SceneManager not found! Add to Autoload.")
-	else:
-		print(building_name, " has no interior scene assigned")
+	if interior_scene_path == "":
+		return
+	var scene_manager = get_node_or_null("/root/SceneManager")
+	if scene_manager:
+		scene_manager.change_scene(interior_scene_path, spawn_position_in_interior)
 
 func show_prompt():
 	if prompt_label:

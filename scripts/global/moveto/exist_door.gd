@@ -36,13 +36,9 @@ func _process(_delta):
 		exit_building()
 
 func exit_building():
-	print("Exiting building...")
-	
 	var scene_manager = get_node_or_null("/root/SceneManager")
 	if scene_manager:
 		scene_manager.change_scene(return_scene_path, spawn_position_in_village)
-	else:
-		print("ERROR: SceneManager not found!")
 
 func show_prompt():
 	if prompt_label:

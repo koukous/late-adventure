@@ -62,7 +62,7 @@ signal rank_up_available(next_rank: Rank)
 signal quest_completed()
 
 func _ready():
-	print("✅ Guild Manager loaded - Current Rank: ", get_rank_name(current_rank))
+	pass
 
 # Get rank name as string
 func get_rank_name(rank: Rank) -> String:
@@ -133,23 +133,26 @@ func get_next_rank_requirements(player_level: int = 1) -> Dictionary:
 # Rank up (call after passing trial boss)
 func rank_up() -> bool:
 	if current_rank == Rank.S:
-		print("Already at maximum rank!")
 		return false
-	
+
 	current_rank += 1
-	print("🎉 RANK UP! New rank: ", get_rank_name(current_rank))
-	
 	rank_changed.emit(current_rank)
+
+	# Save immediately after rank up
+	var save_manager = get_node_or_null("/root/SaveManager")
+	if save_manager:
+		var scene_manager = get_node_or_null("/root/SceneManager")
+		var scene_path = scene_manager.current_scene.scene_file_path if scene_manager and scene_manager.current_scene else ""
+		var player = get_tree().get_first_node_in_group("player")
+		var pos = player.global_position if player else Vector2.ZERO
+		save_manager.save_game(scene_path, pos)
+
 	return true
 
 # Track quest completion
 func complete_quest():
 	quests_completed += 1
 	quest_completed.emit()
-	
-	print("Quest completed! Total: ", quests_completed)
-	
-	# Check if can rank up now
 	check_rank_up_availability()
 
 # Track monster kills
@@ -167,9 +170,7 @@ func clear_dungeon():
 # Check if rank up is now available
 func check_rank_up_availability(player_level: int = 1):
 	if can_rank_up(player_level):
-		var next_rank = current_rank + 1
-		print("⭐ Rank up available! You can now attempt rank ", get_rank_letter(next_rank), " trial!")
-		rank_up_available.emit(next_rank)
+		rank_up_available.emit(current_rank + 1)
 
 # Get current rank info
 func get_rank_info() -> Dictionary:
@@ -199,5 +200,3 @@ func load_guild_data(data: Dictionary):
 	total_monsters_killed = data.get("monsters", 0)
 	total_resources_gathered = data.get("resources", 0)
 	dungeons_cleared = data.get("dungeons", 0)
-	
-	print("Guild data loaded - Rank: ", get_rank_name(current_rank))
