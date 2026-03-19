@@ -38,7 +38,7 @@ func create_ui():
 	main_panel = Panel.new()
 	main_panel.size = Vector2(700, 500)
 	main_panel.position = Vector2(250, 100)
-	main_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	main_panel.mouse_filter = Control.MOUSE_FILTER_STOP
 	add_child(main_panel)
 	
 	# Title
@@ -230,33 +230,7 @@ func refresh_display():
 	update_recipe_list()
 	update_recipe_details()
 
-# Input handler - blocks keyboard and manually handles button clicks
+# Block keyboard input from reaching the game world while the UI is open
 func _input(event):
-	if visible:
-		# Block keyboard (prevents Space attack)
-		if event is InputEventKey:
-			get_viewport().set_input_as_handled()
-		
-		# Manual button click detection
-		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			# Check recipe buttons
-			for i in recipe_list_container.get_child_count():
-				var child = recipe_list_container.get_child(i)
-				if child is Button:
-					var local_mouse = child.get_local_mouse_position()
-					var is_inside = Rect2(Vector2.ZERO, child.size).has_point(local_mouse)
-					
-					if is_inside:
-						_on_recipe_selected(recipes[i])
-						get_viewport().set_input_as_handled()
-						return
-			
-			# Check craft button
-			if craft_button:
-				var craft_local_mouse = craft_button.get_local_mouse_position()
-				var craft_is_inside = Rect2(Vector2.ZERO, craft_button.size).has_point(craft_local_mouse)
-				
-				if craft_is_inside and not craft_button.disabled:
-					_on_craft_button_pressed()
-					get_viewport().set_input_as_handled()
-					return
+	if visible and event is InputEventKey:
+		get_viewport().set_input_as_handled()
