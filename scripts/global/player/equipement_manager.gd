@@ -25,18 +25,16 @@ var total_defense: int = 0
 var total_health: int = 0
 
 func _ready():
-	print("✅ Equipment Manager loaded")
+	pass
 
 func equip_item(item: EquipmentData) -> bool:
 	if not item:
-		print("ERROR: Trying to equip null item")
 		return false
 	
 	# Get slot name based on equipment type
 	var slot = get_slot_for_type(item.equipment_type)
 	
 	if slot == "":
-		print("ERROR: Unknown equipment type")
 		return false
 	
 	# Unequip current item in slot (if any)
@@ -45,8 +43,7 @@ func equip_item(item: EquipmentData) -> bool:
 	
 	# Equip new item
 	equipped_items[slot] = item
-	print("Equipped: ", item.item_name, " in slot: ", slot)
-	
+
 	# Update stats
 	calculate_total_stats()
 	
@@ -58,15 +55,13 @@ func equip_item(item: EquipmentData) -> bool:
 
 func unequip_item(slot: String) -> EquipmentData:
 	if not equipped_items.has(slot):
-		print("ERROR: Invalid slot: ", slot)
 		return null
 	
 	var item = equipped_items[slot]
 	
 	if item:
 		equipped_items[slot] = null
-		print("Unequipped: ", item.item_name, " from slot: ", slot)
-		
+
 		# Return item to inventory
 		var inventory = get_node_or_null("/root/InventoryManager")
 		if inventory:
@@ -125,8 +120,7 @@ func calculate_total_stats():
 			total_defense += item.defense_bonus
 			total_health += item.health_bonus
 	
-	print("Equipment stats updated - STR:", total_strength, " DEX:", total_dexterity, 
-		  " DMG:", total_damage, " DEF:", total_defense)
+
 
 func get_total_damage_bonus() -> int:
 	return total_damage
