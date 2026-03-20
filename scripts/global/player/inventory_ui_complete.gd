@@ -70,53 +70,50 @@ func create_item_slot(item_data: ItemData, quantity: int):
 	slot_panel.add_child(margin)
 	
 	# Add icon if available
-	if item_data.icon:
+	var item_icon = _load_item_icon(item_data)
+	if item_icon:
 		var icon = TextureRect.new()
-		icon.texture = item_data.icon
+		icon.texture = item_icon
 		icon.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		icon.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		icon.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE  # Pass through to parent panel
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		margin.add_child(icon)
 	else:
-		# Use colored rect if no icon
 		var color_rect = ColorRect.new()
-		color_rect.color = Color(0.5, 0.5, 0.5)
+		color_rect.color = Color(0.35, 0.35, 0.4)
 		color_rect.custom_minimum_size = Vector2(56, 56)
-		color_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE  # Pass through to parent panel
+		color_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		margin.add_child(color_rect)
-	
+
 	# Add quantity label
 	var quantity_label = Label.new()
 	quantity_label.text = str(quantity)
 	quantity_label.add_theme_font_size_override("font_size", 16)
 	quantity_label.position = Vector2(4, 44)
-	quantity_label.mouse_filter = Control.MOUSE_FILTER_IGNORE  # Pass through to parent panel
+	quantity_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	slot_panel.add_child(quantity_label)
-	
-	# Mouse hover for tooltip - check before connecting
-	if not slot_panel.mouse_entered.is_connected(_on_slot_hover):
-		slot_panel.mouse_entered.connect(_on_slot_hover.bind(item_data))
-	
-	if not slot_panel.mouse_exited.is_connected(_on_slot_unhover):
-		slot_panel.mouse_exited.connect(_on_slot_unhover)
+
+	slot_panel.mouse_entered.connect(_on_slot_hover.bind(item_data))
+	slot_panel.mouse_exited.connect(_on_slot_unhover)
 	
 	grid_container.add_child(slot_panel)
 	
-	# Connect signals - only connect if NOT already connected
 	if item_data is EquipmentData:
-		if not slot_panel.gui_input.is_connected(_on_slot_gui_input):
-			slot_panel.gui_input.connect(_on_slot_gui_input.bind(item_data))
-		
-	# Check if it's equipment
-	if item_data is EquipmentData:
-		print("Creating equipment slot for: ", item_data.item_name)
-		if not slot_panel.gui_input.is_connected(_on_slot_gui_input):
-			slot_panel.gui_input.disconnect(_on_slot_gui_input.bind(item_data))
-			
-	else:
-		print("Creating regular item slot for: ", item_data.item_name)
+		slot_panel.gui_input.connect(_on_slot_gui_input.bind(item_data))
+
+func _load_item_icon(item_data: ItemData) -> Texture2D:
+	if not item_data:
+		return null
+	if item_data.icon:
+		return item_data.icon
+	var file_name = item_data.item_name.to_lower().replace(" ", "_") + ".png"
+	var path = "res://sprites/items/" + file_name
+	if ResourceLoader.exists(path):
+		return load(path)
+	return null
 
 func _on_slot_hover(item_data: ItemData):
 	# Show tooltip
@@ -148,28 +145,13 @@ func get_item_tooltip(item_data: ItemData) -> String:
 func _on_slot_gui_input(event: InputEvent, item: ItemData):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			print("Right-clicked on: ", item.item_name)
 			equip_item(item)
 
 func equip_item(item: ItemData):
 	if not item is EquipmentData:
-		print("ERROR: Not equipment!")
 		return
-	
-	print("Trying to equip: ", item.item_name)
-	
-	var equipment = item as EquipmentData
 	var equipment_manager = get_node_or_null("/root/EquipmentManager")
-	
 	if equipment_manager:
-		print("EquipmentManager found, equipping...")
-		# Remove from inventory
 		inventory_manager.remove_item(item.item_name, 1)
-		# Equip
-		equipment_manager.equip_item(equipment)
-		# Refresh display
+		equipment_manager.equip_item(item as EquipmentData)
 		update_inventory_display()
-		
-		print("Equipped: ", item.item_name)
-	else:
-		print("ERROR: EquipmentManager not found!")

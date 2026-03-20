@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="EquipmentData" format=3 uid="uid://b0r1xnp2pabqw"]
 
 [ext_resource type="Script" uid="uid://ch21jrxvw46lr" path="res://scripts/global/clases/equipement_data.gd" id="1_hvn0m"]
+[ext_resource type="Texture2D" path="res://sprites/items/iron_sword.png" id="2_icon"]
 
 [resource]
 script = ExtResource("1_hvn0m")
+icon = ExtResource("2_icon")
 strength_bonus = 3
 damage_bonus = 10
 item_name = "Iron Sword"

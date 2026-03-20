@@ -8,6 +8,10 @@ var selected_recipe: CraftingRecipe = null
 var recipe_cards: Array = []  # [[Panel, CraftingRecipe], ...]
 var selected_card: Panel = null
 
+var active_tab: String = "All"
+var tab_buttons: Array = []  # [[Button, tab_name], ...]
+const TABS = ["All", "Weapons", "Helmet", "Chest", "Legs", "Boots"]
+
 # UI elements
 var main_panel: Panel
 var recipe_list_container: VBoxContainer
@@ -55,10 +59,29 @@ func create_ui():
 	sep_top.size = Vector2(660, 4)
 	main_panel.add_child(sep_top)
 
+	# --- Tab bar ---
+	var tab_width = int(660.0 / TABS.size())
+	for i in TABS.size():
+		var tab_btn = Button.new()
+		tab_btn.text = TABS[i]
+		tab_btn.position = Vector2(i * tab_width, 58)
+		tab_btn.size = Vector2(tab_width, 36)
+		tab_btn.add_theme_font_size_override("font_size", 13)
+		tab_btn.pressed.connect(_on_tab_pressed.bind(TABS[i]))
+		main_panel.add_child(tab_btn)
+		tab_buttons.append([tab_btn, TABS[i]])
+
+	_highlight_active_tab()
+
+	var sep_tabs = HSeparator.new()
+	sep_tabs.position = Vector2(0, 96)
+	sep_tabs.size = Vector2(660, 4)
+	main_panel.add_child(sep_tabs)
+
 	# --- Scrollable recipe list ---
 	var scroll = ScrollContainer.new()
-	scroll.position = Vector2(10, 62)
-	scroll.size = Vector2(640, 388)
+	scroll.position = Vector2(10, 102)
+	scroll.size = Vector2(640, 348)
 	main_panel.add_child(scroll)
 
 	recipe_list_container = VBoxContainer.new()
@@ -89,6 +112,33 @@ func create_ui():
 	craft_button.pressed.connect(_on_craft_button_pressed)
 	main_panel.add_child(craft_button)
 
+func _get_recipe_tab(recipe: CraftingRecipe) -> String:
+	if not recipe.result_item or not recipe.result_item is EquipmentData:
+		return "All"
+	match recipe.result_item.equipment_type:
+		EquipmentData.EquipmentType.WEAPON: return "Weapons"
+		EquipmentData.EquipmentType.HELMET: return "Helmet"
+		EquipmentData.EquipmentType.CHEST:  return "Chest"
+		EquipmentData.EquipmentType.LEGS:   return "Legs"
+		EquipmentData.EquipmentType.BOOTS:  return "Boots"
+		_: return "All"
+
+func _on_tab_pressed(tab_name: String):
+	active_tab = tab_name
+	_highlight_active_tab()
+	if selected_recipe:
+		var recipe_tab = _get_recipe_tab(selected_recipe)
+		if tab_name != "All" and recipe_tab != tab_name:
+			selected_recipe = null
+			selected_card = null
+	refresh_display()
+
+func _highlight_active_tab():
+	for pair in tab_buttons:
+		var btn = pair[0]
+		var name = pair[1]
+		btn.modulate = Color(1.0, 0.85, 0.35) if name == active_tab else Color(1, 1, 1)
+
 func clear_recipes():
 	recipes.clear()
 	recipe_cards.clear()
@@ -106,11 +156,13 @@ func update_recipe_list():
 	recipe_cards.clear()
 	selected_card = null
 	for child in recipe_list_container.get_children():
-		child.queue_free()
-
-	await get_tree().process_frame
+		child.free()
 
 	for recipe in recipes:
+		var recipe_tab = _get_recipe_tab(recipe)
+		if active_tab != "All" and recipe_tab != active_tab:
+			continue
+
 		var can_craft = inventory_manager != null and recipe.can_craft(inventory_manager, 0, 1)
 
 		# Card panel
@@ -128,10 +180,40 @@ func update_recipe_list():
 		click_btn.pressed.connect(_on_recipe_selected.bind(recipe))
 		card.add_child(click_btn)
 
+		# Icon (48x48, vertically centred)
+		const ICON_SIZE := 48
+		const ICON_X    := 10
+		var icon_y := int((82 - ICON_SIZE) / 2)
+		var text_x := ICON_X + ICON_SIZE + 10
+
+		var item_icon = _load_item_icon(recipe.result_item)
+		if item_icon:
+			var icon_rect = TextureRect.new()
+			icon_rect.texture = item_icon
+			icon_rect.position = Vector2(ICON_X, icon_y)
+			icon_rect.size = Vector2(ICON_SIZE, ICON_SIZE)
+			icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			icon_rect.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			icon_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			card.add_child(icon_rect)
+		else:
+			# Placeholder: coloured square with first letter
+			var placeholder = Panel.new()
+			placeholder.position = Vector2(ICON_X, icon_y)
+			placeholder.size = Vector2(ICON_SIZE, ICON_SIZE)
+			placeholder.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			card.add_child(placeholder)
+			var initial = Label.new()
+			initial.text = recipe.recipe_name.left(1).to_upper()
+			initial.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+			initial.add_theme_font_size_override("font_size", 20)
+			initial.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			placeholder.add_child(initial)
+
 		# Recipe name
 		var name_label = Label.new()
 		name_label.text = recipe.recipe_name
-		name_label.position = Vector2(12, 8)
+		name_label.position = Vector2(text_x, 8)
 		name_label.add_theme_font_size_override("font_size", 17)
 		name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		card.add_child(name_label)
@@ -140,7 +222,7 @@ func update_recipe_list():
 		if recipe.result_item:
 			var result_label = Label.new()
 			result_label.text = "-> " + str(recipe.result_quantity) + "x " + recipe.result_item.item_name
-			result_label.position = Vector2(12, 34)
+			result_label.position = Vector2(text_x, 32)
 			result_label.add_theme_font_size_override("font_size", 12)
 			result_label.add_theme_color_override("font_color", Color(0.75, 0.88, 1.0))
 			result_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -149,7 +231,7 @@ func update_recipe_list():
 		# Materials row
 		var mats_label = Label.new()
 		mats_label.text = _get_materials_inline(recipe)
-		mats_label.position = Vector2(12, 56)
+		mats_label.position = Vector2(text_x, 56)
 		mats_label.add_theme_font_size_override("font_size", 12)
 		mats_label.add_theme_color_override("font_color", Color(0.9, 0.9, 0.9))
 		mats_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -159,6 +241,17 @@ func update_recipe_list():
 		if recipe == selected_recipe:
 			selected_card = card
 			card.modulate = Color(1.0, 0.95, 0.55)
+
+func _load_item_icon(item_data: ItemData) -> Texture2D:
+	if not item_data:
+		return null
+	if item_data.icon:
+		return item_data.icon
+	var file_name = item_data.item_name.to_lower().replace(" ", "_") + ".png"
+	var path = "res://sprites/items/" + file_name
+	if ResourceLoader.exists(path):
+		return load(path)
+	return null
 
 func _get_materials_inline(recipe: CraftingRecipe) -> String:
 	var parts = []
@@ -217,7 +310,7 @@ func _on_craft_button_pressed():
 	if selected_recipe.consume_materials(inventory_manager):
 		inventory_manager.add_item(selected_recipe.result_item, selected_recipe.result_quantity)
 		await _show_craft_flash()
-		await update_recipe_list()
+		update_recipe_list()
 		update_recipe_details()
 
 func _show_craft_flash():
@@ -234,7 +327,7 @@ func _show_craft_flash():
 	await get_tree().create_timer(0.6).timeout
 
 func refresh_display():
-	await update_recipe_list()
+	update_recipe_list()
 	update_recipe_details()
 
 func _input(event):
