@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://deq28qdbymwrt" path="res://scripts/global/guild/guild_master_NPC.gd" id="1_jvqem"]
 [ext_resource type="Script" uid="uid://cegwe11lpx4iy" path="res://scripts/global/moveto/exist_door.gd" id="2_4hdn2"]
 [ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="3_gevnq"]
+[ext_resource type="Script" path="res://scripts/global/guild/quest_board_interaction.gd" id="4_qboard"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4hdn2"]
 size = Vector2(48, 64)
@@ -12,6 +13,9 @@ radius = 80.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gevnq"]
 size = Vector2(100, 50)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qboard"]
+radius = 120.0
 
 [node name="GuildHallInterior" type="Node2D" unique_id=1613647443]
 
@@ -118,20 +122,40 @@ offset_right = 160.0
 offset_bottom = 600.0
 color = Color(0.27450982, 0.27450982, 0.29411766, 1)
 
-[node name="QuestBoard" type="ColorRect" parent="." unique_id=1763716722]
-offset_left = 150.0
-offset_top = 250.0
-offset_right = 330.0
-offset_bottom = 490.0
+[node name="QuestBoard" type="Node2D" parent="." unique_id=1763716722]
+position = Vector2(240, 370)
+script = ExtResource("4_qboard")
+
+[node name="BoardSprite" type="ColorRect" parent="QuestBoard" unique_id=1656644869]
+offset_left = -90.0
+offset_top = -120.0
+offset_right = 90.0
+offset_bottom = 120.0
 color = Color(0.54509807, 0.3529412, 0.23529412, 1)
 
-[node name="Label" type="Label" parent="QuestBoard" unique_id=1656644869]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 100.0
-offset_right = 250.0
-offset_bottom = 123.0
-text = "Quest Board\\n(Coming Soon!)"
+[node name="BoardLabel" type="Label" parent="QuestBoard" unique_id=1656644870]
+offset_left = -70.0
+offset_top = -20.0
+offset_right = 70.0
+offset_bottom = 10.0
+theme_override_font_sizes/font_size = 13
+text = "QUEST BOARD"
+horizontal_alignment = 1
+
+[node name="InteractionArea" type="Area2D" parent="QuestBoard" unique_id=1763716723]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestBoard/InteractionArea" unique_id=1763716724]
+shape = SubResource("CircleShape2D_qboard")
+
+[node name="PromptLabel" type="Label" parent="QuestBoard" unique_id=1763716725]
+visible = false
+offset_left = -60.0
+offset_top = -150.0
+offset_right = 60.0
+offset_bottom = -130.0
+theme_override_font_sizes/font_size = 14
+text = "Press E to view quests"
+horizontal_alignment = 1
 
 [node name="Player" parent="." unique_id=1202437955 instance=ExtResource("3_gevnq")]
 position = Vector2(639, 577)

@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @onready var health_ui = $HealthUI
 @onready var inventory_ui = $InventoryUI
-@onready var equipment_ui = $EquipmentUI  # ← THIS LINE
+@onready var equipment_ui = $EquipmentUI
 
 func _ready():
 	if inventory_ui:
@@ -11,11 +11,8 @@ func _ready():
 		equipment_ui.visible = false
 
 func _input(event):
-	# Toggle inventory
 	if event.is_action_pressed("ui_inventory"):
 		toggle_inventory()
-	
-	# Toggle equipment ← THIS BLOCK
 	if event.is_action_pressed("ui_equipment"):
 		toggle_equipment()
 
