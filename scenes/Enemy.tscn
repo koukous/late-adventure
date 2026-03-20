@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cbb1qqg12q3mb" path="res://scenes/Coin.tscn" id="3_e6d4v"]
 [ext_resource type="AudioStream" uid="uid://bahy7ibh6vm5q" path="res://sounds/enemy/SoundEnemyHit.wav" id="4_5wwv6"]
 [ext_resource type="AudioStream" uid="uid://4bvf0j8ahrxa" path="res://sounds/enemy/SoundEnemyDeath.wav" id="5_1vja8"]
+[ext_resource type="Resource" path="res://resources/materials/bones.tres" id="6_bones"]
+[ext_resource type="Resource" path="res://resources/materials/monster_skin.tres" id="7_skin"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gqquq"]
 size = Vector2(32, 32)
@@ -18,6 +20,10 @@ drop_health_chance = 1.0
 drop_coin_chance = 1.0
 health_pickup_scene = ExtResource("2_2hac7")
 coin_scene = ExtResource("3_e6d4v")
+drop_material_1 = ExtResource("6_bones")
+drop_material_1_chance = 0.6
+drop_material_2 = ExtResource("7_skin")
+drop_material_2_chance = 0.4
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=927037604]
 modulate = Color(1, 0, 0, 1)

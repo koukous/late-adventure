@@ -374,3 +374,4 @@ stream = ExtResource("4_tuyoq")
 stream = ExtResource("5_fjrip")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=261340826]
+zoom = Vector2(0.75, 0.75)

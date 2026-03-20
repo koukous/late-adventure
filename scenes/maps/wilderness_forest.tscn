@@ -37,12 +37,6 @@ position = Vector2(200, -514)
 
 [node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1992827916 groups=["player_spawn"]]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=738757767]
-enabled = false
-limit_left = -1500
-limit_top = -1500
-limit_right = 1500
-limit_bottom = 1500
 
 [node name="Player" parent="." unique_id=1202437955 instance=ExtResource("2_0nknu")]
 

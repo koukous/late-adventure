@@ -14,6 +14,7 @@ func _ready():
 	visible = false
 	mouse_filter = Control.MOUSE_FILTER_PASS
 	z_index = 100
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	
 	guild_manager = get_node_or_null("/root/GuildManager")
 	

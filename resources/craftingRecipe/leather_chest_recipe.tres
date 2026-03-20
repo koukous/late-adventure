@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" format=3]
+
+[ext_resource type="Script" uid="uid://bur4qpiw5pdoo" path="res://scripts/global/clases/crafting_recipe_simple.gd" id="1_y62nu"]
+[ext_resource type="Resource" path="res://resources/materials/leather.tres" id="2_leather"]
+[ext_resource type="Resource" path="res://resources/materials/monster_skin.tres" id="3_skin"]
+[ext_resource type="Resource" path="res://resources/equipement/leather_chest.tres" id="4_result"]
+
+[resource]
+script = ExtResource("1_y62nu")
+recipe_name = "Leather Chest"
+result_item = ExtResource("4_result")
+result_quantity = 1
+material_1 = ExtResource("2_leather")
+material_1_quantity = 3
+material_2 = ExtResource("3_skin")
+material_2_quantity = 4
+metadata/_custom_type_script = "uid://bur4qpiw5pdoo"

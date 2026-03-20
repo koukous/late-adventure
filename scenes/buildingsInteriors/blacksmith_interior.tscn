@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="3_ucpqw"]
 [ext_resource type="PackedScene" uid="uid://blrghfb0id5hc" path="res://scenes/global/GlobalUI.tscn" id="4_q0po5"]
 [ext_resource type="Resource" uid="uid://cm6pgxds5mhah" path="res://resources/craftingRecipe/Iron_Sword_Recepi.tres" id="4_r8v01"]
+[ext_resource type="Resource" path="res://resources/craftingRecipe/bone_dagger_recipe.tres" id="5_recipe"]
+[ext_resource type="Resource" path="res://resources/craftingRecipe/iron_helmet_recipe.tres" id="6_recipe"]
+[ext_resource type="Resource" path="res://resources/craftingRecipe/leather_chest_recipe.tres" id="7_recipe"]
+[ext_resource type="Resource" path="res://resources/craftingRecipe/iron_boots_recipe.tres" id="8_recipe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0wi3"]
 size = Vector2(60, 30)
@@ -69,7 +73,7 @@ position = Vector2(320, 400)
 [node name="BlacksmithNPC" type="CharacterBody2D" parent="." unique_id=2010132127]
 position = Vector2(250, 250)
 script = ExtResource("2_u0wi3")
-recipes = Array[ExtResource("3_l73ay")]([ExtResource("4_r8v01")])
+recipes = Array[ExtResource("3_l73ay")]([ExtResource("4_r8v01"), ExtResource("5_recipe"), ExtResource("6_recipe"), ExtResource("7_recipe"), ExtResource("8_recipe")])
 
 [node name="ColorRect" type="ColorRect" parent="BlacksmithNPC" unique_id=1330434737]
 offset_left = -16.0

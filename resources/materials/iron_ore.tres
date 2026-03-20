@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" uid="uid://c4xjbmk0lvhi7" path="res://scripts/global/clases/item_data.gd" id="1_b5wlh"]
+
+[resource]
+script = ExtResource("1_b5wlh")
+item_name = "iron ore"
+description = "A chunk of raw iron ore, ready to be smelted."
+item_type = "crafting"
+metadata/_custom_type_script = "uid://c4xjbmk0lvhi7"

@@ -40,15 +40,9 @@ func _ready():
 	setup_crafting_ui()
 
 func setup_crafting_ui():
-	# Try to find existing crafting UI in scene
 	crafting_ui = get_node_or_null("/root/CraftingUI")
-	
 	if crafting_ui:
-		# IMPORTANT: Hide it at start!
 		crafting_ui.visible = false
-		print("Blacksmith found CraftingUI and hid it")
-	else:
-		print("WARNING: CraftingUI not found in Autoload!")
 
 func _on_player_entered(body):
 	if body.is_in_group("player"):
@@ -103,44 +97,21 @@ func hide_dialogue():
 		dialogue_ui.hide_dialogue()
 
 func open_crafting():
-	print("=== OPENING BLACKSMITH CRAFTING ===")
-	print("Blacksmith has ", recipes.size(), " recipes")
-	
-	# Get crafting UI if we don't have it yet
 	if not crafting_ui:
-		crafting_ui = get_node_or_null("/root/BacksmithCraftingUi")
-	
+		crafting_ui = get_node_or_null("/root/CraftingUI")
+
 	if crafting_ui:
-		print("CraftingUI found!")
-		
-		# Clear previous recipes
-		if crafting_ui.has_method("clear_recipes"):
-			crafting_ui.clear_recipes()
-			print("Cleared old recipes")
-		
-		# Load recipes into UI
-		print("Adding recipes to UI:")
+		crafting_ui.clear_recipes()
 		for recipe in recipes:
-			print("  - ", recipe.recipe_name if recipe else "NULL RECIPE")
-			if crafting_ui.has_method("add_recipe"):
-				crafting_ui.add_recipe(recipe)
-		
-		# Update and show
-		if crafting_ui.has_method("update_recipe_list"):
-			print("Updating recipe list...")
-			crafting_ui.update_recipe_list()
-		
+			crafting_ui.add_recipe(recipe)
+		crafting_ui.update_recipe_list()
 		crafting_ui.visible = true
 		crafting_ui_open = true
-		print("Crafting menu opened!")
-	else:
-		print("ERROR: Crafting UI not found!")
 
 func close_crafting():
 	if crafting_ui and crafting_ui_open:
 		crafting_ui.visible = false
 		crafting_ui_open = false
-		print("Crafting menu closed")
 
 func show_prompt():
 	if prompt_label:

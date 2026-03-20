@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" format=3]
+
+[ext_resource type="Script" uid="uid://bur4qpiw5pdoo" path="res://scripts/global/clases/crafting_recipe_simple.gd" id="1_y62nu"]
+[ext_resource type="Resource" path="res://resources/materials/iron_ore.tres" id="2_iron_ore"]
+[ext_resource type="Resource" path="res://resources/materials/bones.tres" id="3_bones"]
+[ext_resource type="Resource" path="res://resources/equipement/iron_helmet.tres" id="4_result"]
+
+[resource]
+script = ExtResource("1_y62nu")
+recipe_name = "Iron Helmet"
+result_item = ExtResource("4_result")
+result_quantity = 1
+material_1 = ExtResource("2_iron_ore")
+material_1_quantity = 3
+material_2 = ExtResource("3_bones")
+material_2_quantity = 2
+metadata/_custom_type_script = "uid://bur4qpiw5pdoo"

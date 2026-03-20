@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EquipmentData" format=3]
+
+[ext_resource type="Script" uid="uid://ch21jrxvw46lr" path="res://scripts/global/clases/equipement_data.gd" id="1_hvn0m"]
+
+[resource]
+script = ExtResource("1_hvn0m")
+equipment_type = 0
+weapon_type = 0
+strength_bonus = 1
+dexterity_bonus = 3
+damage_bonus = 6
+item_name = "Bone Dagger"
+description = "A light dagger carved from monster bones. Fast but fragile."
+stack_size = 1
+item_type = "Equipment"
+metadata/_custom_type_script = "uid://ch21jrxvw46lr"

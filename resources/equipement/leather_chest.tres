@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EquipmentData" format=3]
+
+[ext_resource type="Script" uid="uid://ch21jrxvw46lr" path="res://scripts/global/clases/equipement_data.gd" id="1_hvn0m"]
+
+[resource]
+script = ExtResource("1_hvn0m")
+equipment_type = 2
+vitality_bonus = 4
+defense_bonus = 8
+health_bonus = 15
+item_name = "Leather Chest"
+description = "Flexible leather armor that balances protection and mobility."
+stack_size = 1
+item_type = "Equipment"
+metadata/_custom_type_script = "uid://ch21jrxvw46lr"

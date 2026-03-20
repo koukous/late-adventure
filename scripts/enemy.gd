@@ -12,6 +12,14 @@ extends CharacterBody2D
 @export var health_pickup_scene: PackedScene
 @export var coin_scene: PackedScene
 
+# Material drops
+@export var drop_material_1: ItemData
+@export var drop_material_1_chance: float = 0.0
+@export var drop_material_2: ItemData
+@export var drop_material_2_chance: float = 0.0
+@export var drop_material_3: ItemData
+@export var drop_material_3_chance: float = 0.0
+
 var current_health: int
 var sprite
 var can_damage_player: bool = true
@@ -100,3 +108,14 @@ func drop_items():
 		var coin = coin_scene.instantiate()
 		coin.global_position = global_position + Vector2(randf_range(-20, 20), randf_range(-20, 20))
 		get_parent().add_child(coin)
+
+	var inventory = get_node_or_null("/root/InventoryManager")
+	if inventory:
+		var material_drops = [
+			[drop_material_1, drop_material_1_chance],
+			[drop_material_2, drop_material_2_chance],
+			[drop_material_3, drop_material_3_chance],
+		]
+		for drop in material_drops:
+			if drop[0] and randf() < drop[1]:
+				inventory.add_item(drop[0], 1)
