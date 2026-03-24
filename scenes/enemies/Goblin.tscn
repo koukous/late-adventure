@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://enemy_goblin1"]
+
+[ext_resource type="PackedScene" uid="uid://4035bihmolck" path="res://scenes/Enemy.tscn" id="1_goblin"]
+
+[node name="Goblin" instance=ExtResource("1_goblin")]
+enemy_name = "Goblin"
+max_health = 30
+contact_damage = 10
+move_speed = 80.0
+detection_range = 280.0
+drop_health_chance = 0.15
+drop_coin_chance = 0.7
+drop_material_1_chance = 0.0
+drop_material_2_chance = 0.0

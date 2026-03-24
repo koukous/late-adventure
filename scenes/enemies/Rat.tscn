@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://enemy_rat001"]
+
+[ext_resource type="PackedScene" uid="uid://4035bihmolck" path="res://scenes/Enemy.tscn" id="1_rat"]
+
+[node name="Rat" instance=ExtResource("1_rat")]
+enemy_name = "Rat"
+max_health = 15
+contact_damage = 5
+move_speed = 90.0
+detection_range = 200.0
+drop_health_chance = 0.1
+drop_coin_chance = 0.4
+drop_material_1_chance = 0.0
+drop_material_2_chance = 0.0

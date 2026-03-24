@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@export var enemy_name: String = ""
+@export var is_trial_boss: bool = false
+
 @export var max_health: int = 30
 @export var contact_damage: int = 10
 @export var damage_cooldown: float = 1.0
@@ -29,6 +32,7 @@ var player = null
 # Sound references
 @onready var hurt_sound = $HurtSound
 @onready var death_sound = $DeathSound
+@onready var name_label = $NameLabel
 
 func _ready():
 	current_health = max_health
@@ -39,6 +43,9 @@ func _ready():
 		sprite = $Sprite2D
 
 	player = get_tree().get_first_node_in_group("player")
+
+	if name_label:
+		name_label.text = enemy_name
 
 func _physics_process(delta):
 	if damage_timer > 0:
@@ -94,6 +101,13 @@ func die():
 	if death_sound:
 		death_sound.play()
 		await death_sound.finished
+
+	var qm = get_node_or_null("/root/QuestManager")
+	if qm and enemy_name != "":
+		if is_trial_boss:
+			qm.report_boss_killed(enemy_name)
+		else:
+			qm.report_kill(enemy_name)
 
 	drop_items()
 	queue_free()

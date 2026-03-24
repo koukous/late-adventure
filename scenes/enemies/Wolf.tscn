@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://enemy_wolf01"]
+
+[ext_resource type="PackedScene" uid="uid://4035bihmolck" path="res://scenes/Enemy.tscn" id="1_wolf"]
+
+[node name="Wolf" instance=ExtResource("1_wolf")]
+enemy_name = "Wolf"
+max_health = 35
+contact_damage = 12
+move_speed = 110.0
+detection_range = 350.0
+drop_health_chance = 0.2
+drop_coin_chance = 0.6
+drop_material_1_chance = 0.0
+drop_material_2_chance = 0.0

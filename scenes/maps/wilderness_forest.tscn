@@ -3,10 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://lb31uy8m4d78" path="res://scenes/buildings/tree.tscn" id="1_p0ori"]
 [ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="2_0nknu"]
 [ext_resource type="PackedScene" uid="uid://blrghfb0id5hc" path="res://scenes/global/GlobalUI.tscn" id="3_qrpwe"]
-[ext_resource type="PackedScene" uid="uid://4035bihmolck" path="res://scenes/Enemy.tscn" id="4_qrpwe"]
-[ext_resource type="Script" uid="uid://cegwe11lpx4iy" path="res://scripts/global/moveto/exist_door.gd" id="5_qssl3"]
-[ext_resource type="PackedScene" uid="uid://7ihs34pgrouf" path="res://scenes/global/ResourceFlower.tscn" id="6_ojn3t"]
-[ext_resource type="PackedScene" uid="uid://dyb0vlc76fbf1" path="res://scenes/global/resourceWood.tscn" id="7_61dda"]
+[ext_resource type="PackedScene" uid="uid://enemy_rat001" path="res://scenes/enemies/Rat.tscn" id="4_rat"]
+[ext_resource type="PackedScene" uid="uid://enemy_slime01" path="res://scenes/enemies/Slime.tscn" id="5_slime"]
+[ext_resource type="PackedScene" uid="uid://enemy_wolf01" path="res://scenes/enemies/Wolf.tscn" id="6_wolf"]
+[ext_resource type="PackedScene" uid="uid://enemy_goblin1" path="res://scenes/enemies/Goblin.tscn" id="7_goblin"]
+[ext_resource type="PackedScene" uid="uid://enemy_fguard1" path="res://scenes/enemies/ForestGuardian.tscn" id="8_fguard"]
+[ext_resource type="Script" uid="uid://cegwe11lpx4iy" path="res://scripts/global/moveto/exist_door.gd" id="9_qssl3"]
+[ext_resource type="PackedScene" uid="uid://7ihs34pgrouf" path="res://scenes/global/ResourceFlower.tscn" id="10_ojn3t"]
+[ext_resource type="PackedScene" uid="uid://dyb0vlc76fbf1" path="res://scenes/global/resourceWood.tscn" id="11_61dda"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojn3t"]
 size = Vector2(100, 60)
@@ -37,20 +41,13 @@ position = Vector2(200, -514)
 
 [node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1992827916 groups=["player_spawn"]]
 
-
 [node name="Player" parent="." unique_id=1202437955 instance=ExtResource("2_0nknu")]
 
 [node name="GlobalUi" parent="." unique_id=1810816273 instance=ExtResource("3_qrpwe")]
 
-[node name="Enemy" parent="." unique_id=157909595 instance=ExtResource("4_qrpwe")]
-position = Vector2(591, -313)
-
-[node name="Enemy2" parent="." unique_id=1993720399 instance=ExtResource("4_qrpwe")]
-position = Vector2(-537, -91)
-
 [node name="ReturnGate" type="Area2D" parent="." unique_id=1526667867]
 position = Vector2(0, -700)
-script = ExtResource("5_qssl3")
+script = ExtResource("9_qssl3")
 spawn_position_in_village = Vector2(400, 100)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnGate" unique_id=459001442]
@@ -71,11 +68,99 @@ offset_right = 57.0
 offset_bottom = -780.0
 text = "To Village "
 
-[node name="ResourceFlower" parent="." unique_id=1353171926 instance=ExtResource("6_ojn3t")]
+[node name="ResourceFlower" parent="." unique_id=1353171926 instance=ExtResource("10_ojn3t")]
 position = Vector2(-847, -375)
 
-[node name="ResourceFlower2" parent="." unique_id=1429803929 instance=ExtResource("6_ojn3t")]
+[node name="ResourceFlower2" parent="." unique_id=1429803929 instance=ExtResource("10_ojn3t")]
 position = Vector2(341, -435)
 
-[node name="ResourceWood" parent="." unique_id=1847252650 instance=ExtResource("7_61dda")]
+[node name="ResourceWood" parent="." unique_id=1847252650 instance=ExtResource("11_61dda")]
 position = Vector2(669, 36)
+
+[node name="Rats" type="Node2D" parent="." unique_id=2100000001]
+
+[node name="Rat1" parent="Rats" instance=ExtResource("4_rat")]
+position = Vector2(-300, 250)
+
+[node name="Rat2" parent="Rats" instance=ExtResource("4_rat")]
+position = Vector2(420, 380)
+
+[node name="Rat3" parent="Rats" instance=ExtResource("4_rat")]
+position = Vector2(-620, 460)
+
+[node name="Rat4" parent="Rats" instance=ExtResource("4_rat")]
+position = Vector2(520, 180)
+
+[node name="Rat5" parent="Rats" instance=ExtResource("4_rat")]
+position = Vector2(-180, 620)
+
+[node name="Rat6" parent="Rats" instance=ExtResource("4_rat")]
+position = Vector2(360, 540)
+
+[node name="Slimes" type="Node2D" parent="." unique_id=2100000002]
+
+[node name="Slime1" parent="Slimes" instance=ExtResource("5_slime")]
+position = Vector2(-820, 180)
+
+[node name="Slime2" parent="Slimes" instance=ExtResource("5_slime")]
+position = Vector2(720, 280)
+
+[node name="Slime3" parent="Slimes" instance=ExtResource("5_slime")]
+position = Vector2(-460, 580)
+
+[node name="Slime4" parent="Slimes" instance=ExtResource("5_slime")]
+position = Vector2(640, -80)
+
+[node name="Slime5" parent="Slimes" instance=ExtResource("5_slime")]
+position = Vector2(-680, -60)
+
+[node name="Slime6" parent="Slimes" instance=ExtResource("5_slime")]
+position = Vector2(840, 420)
+
+[node name="Slime7" parent="Slimes" instance=ExtResource("5_slime")]
+position = Vector2(-520, 380)
+
+[node name="Slime8" parent="Slimes" instance=ExtResource("5_slime")]
+position = Vector2(440, -120)
+
+[node name="Slime9" parent="Slimes" instance=ExtResource("5_slime")]
+position = Vector2(-260, 740)
+
+[node name="Wolves" type="Node2D" parent="." unique_id=2100000003]
+
+[node name="Wolf1" parent="Wolves" instance=ExtResource("6_wolf")]
+position = Vector2(460, 160)
+
+[node name="Wolf2" parent="Wolves" instance=ExtResource("6_wolf")]
+position = Vector2(-420, 60)
+
+[node name="Wolf3" parent="Wolves" instance=ExtResource("6_wolf")]
+position = Vector2(520, -340)
+
+[node name="Wolf4" parent="Wolves" instance=ExtResource("6_wolf")]
+position = Vector2(-360, -200)
+
+[node name="Goblins" type="Node2D" parent="." unique_id=2100000004]
+
+[node name="Goblin1" parent="Goblins" instance=ExtResource("7_goblin")]
+position = Vector2(220, 320)
+
+[node name="Goblin2" parent="Goblins" instance=ExtResource("7_goblin")]
+position = Vector2(-220, 280)
+
+[node name="Goblin3" parent="Goblins" instance=ExtResource("7_goblin")]
+position = Vector2(320, 420)
+
+[node name="Goblin4" parent="Goblins" instance=ExtResource("7_goblin")]
+position = Vector2(-360, 440)
+
+[node name="Goblin5" parent="Goblins" instance=ExtResource("7_goblin")]
+position = Vector2(160, 480)
+
+[node name="Goblin6" parent="Goblins" instance=ExtResource("7_goblin")]
+position = Vector2(-100, 380)
+
+[node name="Bosses" type="Node2D" parent="." unique_id=2100000005]
+
+[node name="ForestGuardian" parent="Bosses" instance=ExtResource("8_fguard")]
+position = Vector2(-1100, 900)

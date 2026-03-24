@@ -5,3 +5,363 @@
 [node name="JournalUI" type="CanvasLayer"]
 visible = false
 script = ExtResource("1")
+
+[node name="MainPanel" type="Panel" parent="."]
+offset_left = 290.0
+offset_top = 90.0
+offset_right = 990.0
+offset_bottom = 610.0
+
+[node name="TitleLabel" type="Label" parent="MainPanel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 300.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 26
+text = "JOURNAL"
+
+[node name="CloseButton" type="Button" parent="MainPanel"]
+layout_mode = 0
+offset_left = 656.0
+offset_top = 10.0
+offset_right = 690.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 14
+text = "X"
+
+[node name="TopSep" type="HSeparator" parent="MainPanel"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 54.0
+offset_right = 700.0
+offset_bottom = 58.0
+
+[node name="Tabs" type="TabContainer" parent="MainPanel"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 58.0
+offset_right = 700.0
+offset_bottom = 520.0
+
+[node name="ActiveQuestTab" type="MarginContainer" parent="MainPanel/Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="MainPanel/Tabs/ActiveQuestTab"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="NoQuestLabel" type="Label" parent="MainPanel/Tabs/ActiveQuestTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.55, 0.55, 0.55, 1)
+text = "No active quest.\nVisit the Quest Board in the Guild Hall to pick one up."
+
+[node name="QuestNameLabel" type="Label" parent="MainPanel/Tabs/ActiveQuestTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+visible = false
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1.0, 0.85, 0.35, 1)
+text = ""
+
+[node name="TypeBadgeLabel" type="Label" parent="MainPanel/Tabs/ActiveQuestTab/VBox"]
+layout_mode = 2
+visible = false
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.5, 0.8, 1.0, 1)
+text = ""
+
+[node name="Sep1" type="HSeparator" parent="MainPanel/Tabs/ActiveQuestTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+visible = false
+
+[node name="DescLabel" type="Label" parent="MainPanel/Tabs/ActiveQuestTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+visible = false
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.82, 0.82, 0.82, 1)
+text = ""
+
+[node name="Sep2" type="HSeparator" parent="MainPanel/Tabs/ActiveQuestTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+visible = false
+
+[node name="ObjectiveTitleLabel" type="Label" parent="MainPanel/Tabs/ActiveQuestTab/VBox"]
+layout_mode = 2
+visible = false
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.55, 0.55, 0.55, 1)
+text = "OBJECTIVE"
+
+[node name="ObjectiveLabel" type="Label" parent="MainPanel/Tabs/ActiveQuestTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+visible = false
+theme_override_font_sizes/font_size = 16
+text = ""
+
+[node name="ProgressBar" type="Control" parent="MainPanel/Tabs/ActiveQuestTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+visible = false
+custom_minimum_size = Vector2(0, 22)
+
+[node name="ProgressBg" type="ColorRect" parent="MainPanel/Tabs/ActiveQuestTab/VBox/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.18, 0.18, 0.2, 1)
+
+[node name="ProgressFill" type="ColorRect" parent="MainPanel/Tabs/ActiveQuestTab/VBox/ProgressBar"]
+layout_mode = 1
+anchor_bottom = 1.0
+anchor_right = 0.0
+grow_horizontal = 1
+color = Color(0.25, 0.55, 0.85, 1)
+
+[node name="ProgressLabel" type="Label" parent="MainPanel/Tabs/ActiveQuestTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+visible = false
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+text = "0 / 0"
+
+[node name="StatusLabel" type="Label" parent="MainPanel/Tabs/ActiveQuestTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+visible = false
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 14
+text = ""
+
+[node name="Sep3" type="HSeparator" parent="MainPanel/Tabs/ActiveQuestTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+visible = false
+
+[node name="RewardTitleLabel" type="Label" parent="MainPanel/Tabs/ActiveQuestTab/VBox"]
+layout_mode = 2
+visible = false
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.55, 0.55, 0.55, 1)
+text = "REWARD"
+
+[node name="RewardLabel" type="Label" parent="MainPanel/Tabs/ActiveQuestTab/VBox"]
+layout_mode = 2
+visible = false
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(1.0, 0.85, 0.35, 1)
+text = ""
+
+[node name="QuestLogTab" type="MarginContainer" parent="MainPanel/Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="MainPanel/Tabs/QuestLogTab"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="CountLabel" type="Label" parent="MainPanel/Tabs/QuestLogTab/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.65, 0.65, 0.65, 1)
+text = "Completed Quests: 0"
+
+[node name="Sep" type="HSeparator" parent="MainPanel/Tabs/QuestLogTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NoQuestsLabel" type="Label" parent="MainPanel/Tabs/QuestLogTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+text = "No quests completed yet.\nAccept quests from the Quest Board in the Guild Hall."
+
+[node name="QuestScroll" type="ScrollContainer" parent="MainPanel/Tabs/QuestLogTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+visible = false
+
+[node name="QuestLogList" type="VBoxContainer" parent="MainPanel/Tabs/QuestLogTab/VBox/QuestScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="GuildRankTab" type="MarginContainer" parent="MainPanel/Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="MainPanel/Tabs/GuildRankTab"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="TopRow" type="HBoxContainer" parent="MainPanel/Tabs/GuildRankTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="BadgePanel" type="Panel" parent="MainPanel/Tabs/GuildRankTab/VBox/TopRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(84, 84)
+
+[node name="BadgeLabel" type="Label" parent="MainPanel/Tabs/GuildRankTab/VBox/TopRow/BadgePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 52
+theme_override_colors/font_color = Color(1.0, 0.85, 0.35, 1)
+text = "F"
+
+[node name="RankInfo" type="VBoxContainer" parent="MainPanel/Tabs/GuildRankTab/VBox/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_constants/separation = 6
+
+[node name="RankNameLabel" type="Label" parent="MainPanel/Tabs/GuildRankTab/VBox/TopRow/RankInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "F - Rookie"
+
+[node name="QuestsCompletedLabel" type="Label" parent="MainPanel/Tabs/GuildRankTab/VBox/TopRow/RankInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+text = "Quests completed: 0"
+
+[node name="Sep1" type="HSeparator" parent="MainPanel/Tabs/GuildRankTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MaxRankLabel" type="Label" parent="MainPanel/Tabs/GuildRankTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+visible = false
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1.0, 0.85, 0.35, 1)
+text = "Maximum rank achieved!\nYou are a legendary S-Rank adventurer."
+
+[node name="NextRankLabel" type="Label" parent="MainPanel/Tabs/GuildRankTab/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+theme_override_colors/font_color = Color(1.0, 0.85, 0.35, 1)
+text = "Next: ..."
+
+[node name="Sep2" type="HSeparator" parent="MainPanel/Tabs/GuildRankTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuestReqLabel" type="Label" parent="MainPanel/Tabs/GuildRankTab/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Quests: 0 / 0"
+
+[node name="QuestProgressBar" type="Control" parent="MainPanel/Tabs/GuildRankTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 16)
+
+[node name="QuestBarBg" type="ColorRect" parent="MainPanel/Tabs/GuildRankTab/VBox/QuestProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.18, 0.18, 0.2, 1)
+
+[node name="QuestBarFill" type="ColorRect" parent="MainPanel/Tabs/GuildRankTab/VBox/QuestProgressBar"]
+layout_mode = 1
+anchor_bottom = 1.0
+anchor_right = 0.0
+grow_horizontal = 1
+color = Color(0.3, 0.9, 0.4, 1)
+
+[node name="LevelReqLabel" type="Label" parent="MainPanel/Tabs/GuildRankTab/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Level: 0 / 0"
+
+[node name="LevelProgressBar" type="Control" parent="MainPanel/Tabs/GuildRankTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 16)
+
+[node name="LevelBarBg" type="ColorRect" parent="MainPanel/Tabs/GuildRankTab/VBox/LevelProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.18, 0.18, 0.2, 1)
+
+[node name="LevelBarFill" type="ColorRect" parent="MainPanel/Tabs/GuildRankTab/VBox/LevelProgressBar"]
+layout_mode = 1
+anchor_bottom = 1.0
+anchor_right = 0.0
+grow_horizontal = 1
+color = Color(0.3, 0.55, 0.9, 1)
+
+[node name="Sep3" type="HSeparator" parent="MainPanel/Tabs/GuildRankTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TrialTitleLabel" type="Label" parent="MainPanel/Tabs/GuildRankTab/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.55, 0.55, 0.55, 1)
+text = "RANK-UP TRIAL"
+
+[node name="TrialBossLabel" type="Label" parent="MainPanel/Tabs/GuildRankTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+text = ""
+
+[node name="Sep4" type="HSeparator" parent="MainPanel/Tabs/GuildRankTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HintLabel" type="Label" parent="MainPanel/Tabs/GuildRankTab/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.65, 0.65, 0.65, 1)
+text = ""

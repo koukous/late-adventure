@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://enemy_fguard1"]
+
+[ext_resource type="PackedScene" uid="uid://4035bihmolck" path="res://scenes/Enemy.tscn" id="1_fguard"]
+
+[node name="ForestGuardian" instance=ExtResource("1_fguard")]
+enemy_name = "Forest Guardian"
+is_trial_boss = true
+max_health = 150
+contact_damage = 20
+move_speed = 60.0
+detection_range = 400.0
+drop_health_chance = 1.0
+drop_coin_chance = 1.0
+drop_material_1_chance = 0.0
+drop_material_2_chance = 0.0

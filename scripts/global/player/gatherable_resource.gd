@@ -41,6 +41,12 @@ func gather():
 	if inventory and resource_item:
 		inventory.add_item(resource_item, resource_amount)
 		print("Gathered ", resource_amount, "x ", resource_item.item_name)
+
+	# Report to quest manager
+	var qm = get_node_or_null("/root/QuestManager")
+	if qm and resource_item:
+		for i in resource_amount:
+			qm.report_collect(resource_item.item_name)
 	
 	# Hide visual
 	visible = false
