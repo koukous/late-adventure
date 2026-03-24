@@ -90,26 +90,101 @@ position = Vector2(363, 346)
 
 [node name="GlobalUi" parent="." unique_id=1810816273 instance=ExtResource("10_pa23k")]
 
-[node name="WildernessGate" type="Area2D" parent="." unique_id=1476512276]
-position = Vector2(400, 50)
+[node name="ForestGate" type="Area2D" parent="." unique_id=1476512276]
+position = Vector2(200, 50)
 script = ExtResource("11_oiag1")
 interior_scene_path = "uid://76at8rlyrjop"
 spawn_position_in_interior = Vector2(0, 650)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WildernessGate" unique_id=222227422]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ForestGate" unique_id=222227422]
 position = Vector2(0, -27)
 shape = SubResource("RectangleShape2D_pa23k")
 
-[node name="ColorRect" type="ColorRect" parent="WildernessGate" unique_id=288269689]
+[node name="ColorRect" type="ColorRect" parent="ForestGate" unique_id=288269689]
 offset_left = -60.0
 offset_top = -60.0
 offset_right = 60.0
 offset_bottom = -20.0
-color = Color(0.39607844, 0.2627451, 0.12941177, 1)
+color = Color(0.18, 0.42, 0.12, 1)
 
-[node name="Label" type="Label" parent="WildernessGate" unique_id=1729745503]
-offset_left = 76.0
-offset_top = -44.0
-offset_right = 254.0
-offset_bottom = -21.0
-text = "To Wilderness (Press E)"
+[node name="Label" type="Label" parent="ForestGate" unique_id=1729745503]
+offset_left = -50.0
+offset_top = -72.0
+offset_right = 130.0
+offset_bottom = -50.0
+text = "Forest"
+
+[node name="LabelPrompt" type="Label" parent="ForestGate" unique_id=1729745504]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 130.0
+offset_bottom = -28.0
+add_theme_font_size_override/font_size = 12
+text = "Press E to enter"
+modulate = Color(0.8, 0.8, 0.8, 1)
+
+[node name="DesertGate" type="Area2D" parent="." unique_id=5200000001]
+position = Vector2(500, 50)
+script = ExtResource("11_oiag1")
+interior_scene_path = "res://scenes/maps/wilderness_desert.tscn"
+spawn_position_in_interior = Vector2(0, 650)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DesertGate" unique_id=5200000002]
+position = Vector2(0, -27)
+shape = SubResource("RectangleShape2D_pa23k")
+
+[node name="ColorRect" type="ColorRect" parent="DesertGate" unique_id=5200000003]
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = -20.0
+color = Color(0.72, 0.52, 0.15, 1)
+
+[node name="Label" type="Label" parent="DesertGate" unique_id=5200000004]
+offset_left = -50.0
+offset_top = -72.0
+offset_right = 130.0
+offset_bottom = -50.0
+text = "Desert"
+
+[node name="LabelPrompt" type="Label" parent="DesertGate" unique_id=5200000005]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 130.0
+offset_bottom = -28.0
+add_theme_font_size_override/font_size = 12
+text = "Press E to enter"
+modulate = Color(0.8, 0.8, 0.8, 1)
+
+[node name="SnowGate" type="Area2D" parent="." unique_id=5200000006]
+position = Vector2(800, 50)
+script = ExtResource("11_oiag1")
+interior_scene_path = "res://scenes/maps/wilderness_snow.tscn"
+spawn_position_in_interior = Vector2(0, 650)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SnowGate" unique_id=5200000007]
+position = Vector2(0, -27)
+shape = SubResource("RectangleShape2D_pa23k")
+
+[node name="ColorRect" type="ColorRect" parent="SnowGate" unique_id=5200000008]
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = -20.0
+color = Color(0.45, 0.68, 0.85, 1)
+
+[node name="Label" type="Label" parent="SnowGate" unique_id=5200000009]
+offset_left = -50.0
+offset_top = -72.0
+offset_right = 130.0
+offset_bottom = -50.0
+text = "Snow Mountain"
+
+[node name="LabelPrompt" type="Label" parent="SnowGate" unique_id=5200000010]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 130.0
+offset_bottom = -28.0
+add_theme_font_size_override/font_size = 12
+text = "Press E to enter"
+modulate = Color(0.8, 0.8, 0.8, 1)

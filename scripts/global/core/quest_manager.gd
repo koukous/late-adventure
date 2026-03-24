@@ -18,103 +18,107 @@ func _ready():
 # ---- Quest registry ----
 
 func _register_quests():
-	# --- F Rank ---
+	# --- F Rank (Forest) ---
 	available_quests.append(_quest("f_rats",    "Rat Extermination",
 		"The storage room is overrun with rats. The innkeeper will pay well to have them cleared out.",
-		0, QuestData.ObjectiveType.KILL, "Rat", 5, 50, 100))
+		0, QuestData.ObjectiveType.KILL, "Rat", 5, 50, 100, "forest"))
 
 	available_quests.append(_quest("f_slimes",  "Slime Removal",
 		"Slimes are damaging the roads east of town. Eliminate 8 of them.",
-		0, QuestData.ObjectiveType.KILL, "Slime", 8, 70, 130))
+		0, QuestData.ObjectiveType.KILL, "Slime", 8, 70, 130, "forest"))
 
 	available_quests.append(_quest("f_wolves",  "Wolf Hunt",
 		"Wolves are threatening the farmers near the forest edge. Kill 3 wolves.",
-		0, QuestData.ObjectiveType.KILL, "Wolf", 3, 80, 150))
+		0, QuestData.ObjectiveType.KILL, "Wolf", 3, 80, 150, "forest"))
 
 	available_quests.append(_quest("f_goblins", "Goblin Patrol",
 		"Goblins are raiding the trade road. Drive off their patrol by killing 5 goblins.",
-		0, QuestData.ObjectiveType.KILL, "Goblin", 5, 100, 200))
+		0, QuestData.ObjectiveType.KILL, "Goblin", 5, 100, 200, "forest"))
 
 	available_quests.append(_quest("f_herbs",   "Herb Gathering",
 		"The town healer is running low on medicine. Collect 10 healing herbs.",
-		0, QuestData.ObjectiveType.COLLECT, "Herb", 10, 60, 120))
+		0, QuestData.ObjectiveType.COLLECT, "Herb", 10, 60, 120, "forest"))
 
-	# F -> E trial
+	# F -> E trial (Forest)
 	available_quests.append(_trial("trial_f_e", "Trial: Forest Guardian",
 		"To advance to E-Rank you must prove your strength. Slay the Forest Guardian that lurks in the deep woods.",
-		0, "Forest Guardian"))
+		0, "Forest Guardian", "forest"))
 
-	# --- E Rank ---
+	# --- E Rank (Forest) ---
 	available_quests.append(_quest("e_bandits",  "Bandit Raid",
 		"Forest bandits are ambushing travelers on the east road. Defeat 8 of them.",
-		1, QuestData.ObjectiveType.KILL, "Forest Bandit", 8, 150, 300))
+		1, QuestData.ObjectiveType.KILL, "Forest Bandit", 8, 150, 300, "forest"))
 
 	available_quests.append(_quest("e_spiders",  "Spider Nest",
 		"A giant spider nest is threatening the eastern settlements. Kill 10 giant spiders.",
-		1, QuestData.ObjectiveType.KILL, "Giant Spider", 10, 160, 320))
+		1, QuestData.ObjectiveType.KILL, "Giant Spider", 10, 160, 320, "forest"))
 
 	available_quests.append(_quest("e_bats",     "Cave Clearing",
 		"Strange bats are emerging from the cave at night and attacking the village. Kill 6 cave bats.",
-		1, QuestData.ObjectiveType.KILL, "Cave Bat", 6, 140, 280))
+		1, QuestData.ObjectiveType.KILL, "Cave Bat", 6, 140, 280, "forest"))
 
 	available_quests.append(_quest("e_mushrooms","Rare Mushrooms",
 		"The alchemist needs rare cave mushrooms for a new potion. Collect 5 of them.",
-		1, QuestData.ObjectiveType.COLLECT, "Cave Mushroom", 5, 120, 250))
+		1, QuestData.ObjectiveType.COLLECT, "Cave Mushroom", 5, 120, 250, "forest"))
 
 	available_quests.append(_quest("e_skeletons","Graveyard Watch",
 		"Skeletons are rising from the old cemetery at night. Put 8 of them to rest.",
-		1, QuestData.ObjectiveType.KILL, "Skeleton", 8, 170, 340))
+		1, QuestData.ObjectiveType.KILL, "Skeleton", 8, 170, 340, "forest"))
 
-	# E -> D trial
+	# E -> D trial (Forest)
 	available_quests.append(_trial("trial_e_d", "Trial: Cave Troll",
 		"To advance to D-Rank you must defeat the Cave Troll that has claimed the mine tunnels.",
-		1, "Cave Troll"))
+		1, "Cave Troll", "forest"))
 
-	# --- D Rank ---
-	available_quests.append(_quest("d_orcs",    "Orc Warband",
-		"An orc warband is blocking the mountain pass. Kill 10 orcs to clear the route.",
-		2, QuestData.ObjectiveType.KILL, "Orc", 10, 250, 500))
+	# --- D Rank (Desert) ---
+	available_quests.append(_quest("d_scorpions", "Scorpion Swarm",
+		"Giant scorpions are terrorizing the desert traders. Kill 10 of them.",
+		2, QuestData.ObjectiveType.KILL, "Sand Scorpion", 10, 250, 500, "desert"))
 
-	available_quests.append(_quest("d_undead",  "Undead Outbreak",
-		"The old battlefield is stirring. Destroy 12 undead warriors before they reach the city.",
-		2, QuestData.ObjectiveType.KILL, "Undead", 12, 280, 560))
+	available_quests.append(_quest("d_sandgolems","Sand Golem Threat",
+		"Ancient sand golems have awakened near the ruins. Destroy 6 of them.",
+		2, QuestData.ObjectiveType.KILL, "Sand Golem", 6, 270, 540, "desert"))
 
-	available_quests.append(_quest("d_ore",     "Iron Ore Collection",
-		"The blacksmith urgently needs iron ore. Collect 8 iron ore from the mountain mines.",
-		2, QuestData.ObjectiveType.COLLECT, "Iron Ore", 8, 200, 400))
+	available_quests.append(_quest("d_bandits",  "Desert Raiders",
+		"Desert raiders are looting caravans along the trade road. Eliminate 8 of them.",
+		2, QuestData.ObjectiveType.KILL, "Desert Raider", 8, 260, 520, "desert"))
 
-	available_quests.append(_quest("d_harpies", "Harpy Menace",
-		"Harpies are attacking mountain travelers. Hunt down 6 of them.",
-		2, QuestData.ObjectiveType.KILL, "Harpy", 6, 260, 520))
+	available_quests.append(_quest("d_cactus",   "Cactus Fiber",
+		"The crafters need rare cactus fiber from the deep desert. Collect 8 bundles.",
+		2, QuestData.ObjectiveType.COLLECT, "Cactus Fiber", 8, 200, 400, "desert"))
 
-	# D -> C trial
-	available_quests.append(_trial("trial_d_c", "Trial: Mountain Drake",
-		"To advance to C-Rank you must slay the Mountain Drake that terrorizes the high passes.",
-		2, "Mountain Drake"))
+	# D -> C trial (Desert)
+	available_quests.append(_trial("trial_d_c", "Trial: Sand Wyrm",
+		"To advance to C-Rank you must slay the Sand Wyrm that terrorizes the desert depths.",
+		2, "Sand Wyrm", "desert"))
 
-	# --- C Rank ---
-	available_quests.append(_quest("c_demons",  "Demon Scouts",
-		"Demon scouts have been spotted near the ruins. Eliminate 8 of them before they report back.",
-		3, QuestData.ObjectiveType.KILL, "Demon Scout", 8, 400, 800))
+	# --- C Rank (Snow Mountain) ---
+	available_quests.append(_quest("c_frostwolves", "Frost Wolf Pack",
+		"A pack of frost wolves has been attacking the mountain settlements. Kill 8 of them.",
+		3, QuestData.ObjectiveType.KILL, "Frost Wolf", 8, 400, 800, "snow_mountain"))
 
-	available_quests.append(_quest("c_golems",  "Rogue Golems",
-		"Ancient golems in the ruins have gone berserk. Destroy 5 of them.",
-		3, QuestData.ObjectiveType.KILL, "Stone Golem", 5, 420, 840))
+	available_quests.append(_quest("c_yetis",    "Yeti Menace",
+		"Yetis are blocking the mountain pass and killing travelers. Slay 5 of them.",
+		3, QuestData.ObjectiveType.KILL, "Yeti", 5, 420, 840, "snow_mountain"))
 
-	available_quests.append(_quest("c_crystals","Crystal Harvest",
-		"The mages need mana crystals from the ruins. Collect 6 mana crystals.",
-		3, QuestData.ObjectiveType.COLLECT, "Mana Crystal", 6, 380, 760))
+	available_quests.append(_quest("c_icespirits","Ice Spirit Hunt",
+		"Ice spirits are freezing the village water supply. Dispel 6 of them.",
+		3, QuestData.ObjectiveType.KILL, "Ice Spirit", 6, 410, 820, "snow_mountain"))
 
-	# C -> B trial
-	available_quests.append(_trial("trial_c_b", "Trial: Shadow Beast",
-		"To advance to B-Rank you must face the Shadow Beast that haunts the cursed ruins.",
-		3, "Shadow Beast"))
+	available_quests.append(_quest("c_crystals","Frost Crystal Harvest",
+		"The mages need frost crystals from the mountain peaks. Collect 6 of them.",
+		3, QuestData.ObjectiveType.COLLECT, "Frost Crystal", 6, 380, 760, "snow_mountain"))
+
+	# C -> B trial (Snow Mountain)
+	available_quests.append(_trial("trial_c_b", "Trial: Glacier Drake",
+		"To advance to B-Rank you must face the Glacier Drake that rules the frozen peaks.",
+		3, "Glacier Drake", "snow_mountain"))
 
 # ---- Factory helpers ----
 
 func _quest(id: String, name: String, desc: String, rank: int,
 			obj: QuestData.ObjectiveType, target: String,
-			count: int, gold: int, xp: int) -> QuestData:
+			count: int, gold: int, xp: int, zone: String = "") -> QuestData:
 	var q = QuestData.new()
 	q.quest_id        = id
 	q.quest_name      = name
@@ -126,9 +130,10 @@ func _quest(id: String, name: String, desc: String, rank: int,
 	q.reward_gold     = gold
 	q.reward_xp       = xp
 	q.is_trial        = false
+	q.zone            = zone
 	return q
 
-func _trial(id: String, name: String, desc: String, rank: int, boss: String) -> QuestData:
+func _trial(id: String, name: String, desc: String, rank: int, boss: String, zone: String = "") -> QuestData:
 	var q = QuestData.new()
 	q.quest_id        = id
 	q.quest_name      = name
@@ -140,9 +145,18 @@ func _trial(id: String, name: String, desc: String, rank: int, boss: String) -> 
 	q.reward_gold     = 0
 	q.reward_xp       = 0
 	q.is_trial        = true
+	q.zone            = zone
 	return q
 
 # ---- Queries ----
+
+# Returns non-trial quests available for the given zone and rank (not yet completed)
+func get_quests_for_zone(zone: String, rank: int) -> Array[QuestData]:
+	var result: Array[QuestData] = []
+	for q in available_quests:
+		if q.zone == zone and q.rank_required == rank and not q.is_trial and not completed_quest_ids.has(q.quest_id):
+			result.append(q)
+	return result
 
 # Returns non-trial quests available for the given rank (not yet completed)
 func get_quests_for_rank(rank: int) -> Array[QuestData]:

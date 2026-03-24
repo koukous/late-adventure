@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://map_desert01"]
+
+[ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://blrghfb0id5hc" path="res://scenes/global/GlobalUI.tscn" id="2_globalui"]
+[ext_resource type="PackedScene" uid="uid://enemy_sscorp1" path="res://scenes/enemies/SandScorpion.tscn" id="3_sscorp"]
+[ext_resource type="PackedScene" uid="uid://enemy_sgolem1" path="res://scenes/enemies/SandGolem.tscn" id="4_sgolem"]
+[ext_resource type="PackedScene" uid="uid://enemy_draider1" path="res://scenes/enemies/DesertRaider.tscn" id="5_draider"]
+[ext_resource type="PackedScene" uid="uid://enemy_swyrm01" path="res://scenes/enemies/SandWyrm.tscn" id="6_swyrm"]
+[ext_resource type="Script" uid="uid://cegwe11lpx4iy" path="res://scripts/global/moveto/exist_door.gd" id="7_door"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gate"]
+size = Vector2(100, 60)
+
+[node name="Desert" type="Node2D" unique_id=3100000001]
+
+[node name="Ground" type="ColorRect" parent="." unique_id=3100000002]
+offset_left = -1500.0
+offset_top = -1535.0
+offset_right = 1500.0
+offset_bottom = 1465.0
+color = Color(0.761, 0.651, 0.369, 1)
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=3100000003 groups=["player_spawn"]]
+
+[node name="Player" parent="." unique_id=3100000004 instance=ExtResource("1_player")]
+
+[node name="GlobalUi" parent="." unique_id=3100000005 instance=ExtResource("2_globalui")]
+
+[node name="ReturnGate" type="Area2D" parent="." unique_id=3100000006]
+position = Vector2(0, -700)
+script = ExtResource("7_door")
+spawn_position_in_village = Vector2(400, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnGate" unique_id=3100000007]
+position = Vector2(4, -54)
+shape = SubResource("RectangleShape2D_gate")
+
+[node name="GateVisual" type="ColorRect" parent="." unique_id=3100000008]
+offset_left = -45.0
+offset_top = -782.0
+offset_right = 55.0
+offset_bottom = -722.0
+color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+
+[node name="Label" type="Label" parent="." unique_id=3100000009]
+offset_left = -21.0
+offset_top = -803.0
+offset_right = 57.0
+offset_bottom = -780.0
+text = "To Village"
+
+[node name="SandScorpions" type="Node2D" parent="." unique_id=3100000010]
+
+[node name="SandScorpion1" parent="SandScorpions" instance=ExtResource("3_sscorp")]
+position = Vector2(-300, 200)
+
+[node name="SandScorpion2" parent="SandScorpions" instance=ExtResource("3_sscorp")]
+position = Vector2(420, 300)
+
+[node name="SandScorpion3" parent="SandScorpions" instance=ExtResource("3_sscorp")]
+position = Vector2(-600, 420)
+
+[node name="SandScorpion4" parent="SandScorpions" instance=ExtResource("3_sscorp")]
+position = Vector2(650, -120)
+
+[node name="SandScorpion5" parent="SandScorpions" instance=ExtResource("3_sscorp")]
+position = Vector2(-180, 580)
+
+[node name="SandScorpion6" parent="SandScorpions" instance=ExtResource("3_sscorp")]
+position = Vector2(300, 500)
+
+[node name="SandScorpion7" parent="SandScorpions" instance=ExtResource("3_sscorp")]
+position = Vector2(-750, 100)
+
+[node name="SandScorpion8" parent="SandScorpions" instance=ExtResource("3_sscorp")]
+position = Vector2(800, 350)
+
+[node name="SandScorpion9" parent="SandScorpions" instance=ExtResource("3_sscorp")]
+position = Vector2(-400, -180)
+
+[node name="SandScorpion10" parent="SandScorpions" instance=ExtResource("3_sscorp")]
+position = Vector2(550, 600)
+
+[node name="SandScorpion11" parent="SandScorpions" instance=ExtResource("3_sscorp")]
+position = Vector2(-900, 500)
+
+[node name="SandGolems" type="Node2D" parent="." unique_id=3100000011]
+
+[node name="SandGolem1" parent="SandGolems" instance=ExtResource("4_sgolem")]
+position = Vector2(700, 150)
+
+[node name="SandGolem2" parent="SandGolems" instance=ExtResource("4_sgolem")]
+position = Vector2(-700, 250)
+
+[node name="SandGolem3" parent="SandGolems" instance=ExtResource("4_sgolem")]
+position = Vector2(350, -300)
+
+[node name="SandGolem4" parent="SandGolems" instance=ExtResource("4_sgolem")]
+position = Vector2(-350, 700)
+
+[node name="SandGolem5" parent="SandGolems" instance=ExtResource("4_sgolem")]
+position = Vector2(900, -200)
+
+[node name="SandGolem6" parent="SandGolems" instance=ExtResource("4_sgolem")]
+position = Vector2(-950, -100)
+
+[node name="SandGolem7" parent="SandGolems" instance=ExtResource("4_sgolem")]
+position = Vector2(200, 750)
+
+[node name="DesertRaiders" type="Node2D" parent="." unique_id=3100000012]
+
+[node name="DesertRaider1" parent="DesertRaiders" instance=ExtResource("5_draider")]
+position = Vector2(250, 280)
+
+[node name="DesertRaider2" parent="DesertRaiders" instance=ExtResource("5_draider")]
+position = Vector2(-250, 320)
+
+[node name="DesertRaider3" parent="DesertRaiders" instance=ExtResource("5_draider")]
+position = Vector2(480, 420)
+
+[node name="DesertRaider4" parent="DesertRaiders" instance=ExtResource("5_draider")]
+position = Vector2(-480, 460)
+
+[node name="DesertRaider5" parent="DesertRaiders" instance=ExtResource("5_draider")]
+position = Vector2(150, 420)
+
+[node name="DesertRaider6" parent="DesertRaiders" instance=ExtResource("5_draider")]
+position = Vector2(-150, 380)
+
+[node name="DesertRaider7" parent="DesertRaiders" instance=ExtResource("5_draider")]
+position = Vector2(600, 280)
+
+[node name="DesertRaider8" parent="DesertRaiders" instance=ExtResource("5_draider")]
+position = Vector2(-600, 200)
+
+[node name="DesertRaider9" parent="DesertRaiders" instance=ExtResource("5_draider")]
+position = Vector2(350, 150)
+
+[node name="Bosses" type="Node2D" parent="." unique_id=3100000013]
+
+[node name="SandWyrm" parent="Bosses" instance=ExtResource("6_swyrm")]
+position = Vector2(1100, 900)

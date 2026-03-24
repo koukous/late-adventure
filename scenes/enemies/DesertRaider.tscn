@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://enemy_draider1"]
+
+[ext_resource type="PackedScene" uid="uid://4035bihmolck" path="res://scenes/Enemy.tscn" id="1_draider"]
+
+[node name="DesertRaider" instance=ExtResource("1_draider")]
+enemy_name = "Desert Raider"
+max_health = 75
+contact_damage = 18
+move_speed = 100.0
+detection_range = 320.0
+drop_health_chance = 0.2
+drop_coin_chance = 0.85
+drop_material_1_chance = 0.0
+drop_material_2_chance = 0.0

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://enemy_swyrm01"]
+
+[ext_resource type="PackedScene" uid="uid://4035bihmolck" path="res://scenes/Enemy.tscn" id="1_swyrm"]
+
+[node name="SandWyrm" instance=ExtResource("1_swyrm")]
+enemy_name = "Sand Wyrm"
+is_trial_boss = true
+max_health = 300
+contact_damage = 35
+move_speed = 55.0
+detection_range = 450.0
+drop_health_chance = 1.0
+drop_coin_chance = 1.0
+drop_material_1_chance = 0.0
+drop_material_2_chance = 0.0

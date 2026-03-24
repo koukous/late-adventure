@@ -24,3 +24,6 @@ enum ObjectiveType {
 
 # If true this is a rank-up trial quest — completing it calls rank_up()
 @export var is_trial: bool = false
+
+# Zone where this quest takes place ("forest", "desert", "snow_mountain")
+@export var zone: String = ""

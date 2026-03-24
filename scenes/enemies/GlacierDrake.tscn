@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://enemy_gdrake1"]
+
+[ext_resource type="PackedScene" uid="uid://4035bihmolck" path="res://scenes/Enemy.tscn" id="1_gdrake"]
+
+[node name="GlacierDrake" instance=ExtResource("1_gdrake")]
+enemy_name = "Glacier Drake"
+is_trial_boss = true
+max_health = 500
+contact_damage = 50
+move_speed = 65.0
+detection_range = 500.0
+drop_health_chance = 1.0
+drop_coin_chance = 1.0
+drop_material_1_chance = 0.0
+drop_material_2_chance = 0.0

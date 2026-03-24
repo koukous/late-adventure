@@ -19,6 +19,10 @@ var selected_quest: QuestData = null
 var quest_cards: Array = []   # [[Panel, QuestData], ...]
 var selected_card: Panel = null
 
+var selected_zone: String = "forest"
+var zone_buttons: Dictionary = {}   # zone_id -> Button
+var detail_zone: Label
+
 func _ready():
 	visible = false
 	layer = 10
@@ -75,10 +79,31 @@ func _create_ui():
 	sep_vert.size = Vector2(4, 398)
 	panel.add_child(sep_vert)
 
+	# --- Zone filter buttons ---
+	var zones = [["forest", "Forest"], ["desert", "Desert"], ["snow_mountain", "Snow Mtn"]]
+	var btn_w = 134
+	for i in zones.size():
+		var zid = zones[i][0]
+		var zlabel = zones[i][1]
+		var zbtn = Button.new()
+		zbtn.text = zlabel
+		zbtn.position = Vector2(8 + i * (btn_w + 2), 60)
+		zbtn.size = Vector2(btn_w, 30)
+		zbtn.add_theme_font_size_override("font_size", 13)
+		zbtn.pressed.connect(_set_zone.bind(zid))
+		panel.add_child(zbtn)
+		zone_buttons[zid] = zbtn
+	_update_zone_buttons()
+
+	var sep_zone = HSeparator.new()
+	sep_zone.position = Vector2(0, 94)
+	sep_zone.size = Vector2(430, 2)
+	panel.add_child(sep_zone)
+
 	# --- Left: scrollable quest list ---
 	var scroll = ScrollContainer.new()
-	scroll.position = Vector2(8, 62)
-	scroll.size = Vector2(418, 394)
+	scroll.position = Vector2(8, 98)
+	scroll.size = Vector2(418, 358)
 	panel.add_child(scroll)
 
 	quest_list_container = VBoxContainer.new()
@@ -145,6 +170,12 @@ func _create_detail_panel(parent: Panel):
 	detail_reward.add_theme_color_override("font_color", Color(1.0, 0.85, 0.35))
 	parent.add_child(detail_reward)
 
+	detail_zone = Label.new()
+	detail_zone.position = Vector2(442, 330)
+	detail_zone.size = Vector2(248, 28)
+	detail_zone.add_theme_font_size_override("font_size", 13)
+	parent.add_child(detail_zone)
+
 	action_button = Button.new()
 	action_button.position = Vector2(442, 400)
 	action_button.size = Vector2(248, 48)
@@ -175,7 +206,7 @@ func _rebuild_quest_list():
 		return
 
 	var rank = guild_manager.current_rank
-	var quests = quest_manager.get_quests_for_rank(rank)
+	var quests = quest_manager.get_quests_for_zone(selected_zone, rank)
 
 	if quests.is_empty():
 		var empty_lbl = Label.new()
@@ -239,6 +270,16 @@ func _add_quest_card(quest: QuestData, is_active: bool):
 	rew_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	card.add_child(rew_lbl)
 
+	# Zone badge (top-right of card)
+	var zone_lbl = Label.new()
+	zone_lbl.text = _zone_display_name(quest.zone)
+	zone_lbl.position = Vector2(300, 8)
+	zone_lbl.size = Vector2(110, 20)
+	zone_lbl.add_theme_font_size_override("font_size", 11)
+	zone_lbl.add_theme_color_override("font_color", _zone_color(quest.zone))
+	zone_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	card.add_child(zone_lbl)
+
 func _update_active_bar():
 	if not quest_manager or not quest_manager.active_quest:
 		active_bar.visible = false
@@ -257,6 +298,7 @@ func _update_detail_panel():
 		detail_desc.text = ""
 		detail_objective.text = ""
 		detail_reward.text = ""
+		detail_zone.text = ""
 		action_button.disabled = true
 		action_button.text = "Accept"
 		action_button.modulate = Color(1, 1, 1)
@@ -266,6 +308,8 @@ func _update_detail_panel():
 	detail_desc.text = selected_quest.description
 	detail_objective.text = "Objective: " + _objective_summary(selected_quest)
 	detail_reward.text = "Reward: " + str(selected_quest.reward_gold) + " gold  |  " + str(selected_quest.reward_xp) + " xp"
+	detail_zone.text = "Zone: " + _zone_display_name(selected_quest.zone)
+	detail_zone.add_theme_color_override("font_color", _zone_color(selected_quest.zone))
 
 	var is_active = quest_manager and quest_manager.active_quest == selected_quest
 	var has_other_active = quest_manager and quest_manager.active_quest != null and not is_active
@@ -333,6 +377,36 @@ func _objective_summary(quest: QuestData) -> String:
 			return "Explore " + quest.objective_target
 		_:
 			return ""
+
+func _set_zone(zone: String):
+	selected_zone = zone
+	selected_quest = null
+	selected_card = null
+	_update_zone_buttons()
+	_rebuild_quest_list()
+	_update_detail_panel()
+
+func _update_zone_buttons():
+	for zid in zone_buttons:
+		var btn: Button = zone_buttons[zid]
+		if zid == selected_zone:
+			btn.modulate = _zone_color(zid)
+		else:
+			btn.modulate = Color(1, 1, 1)
+
+func _zone_display_name(zone: String) -> String:
+	match zone:
+		"forest":        return "Forest"
+		"desert":        return "Desert"
+		"snow_mountain": return "Snow Mountain"
+		_:               return zone.capitalize()
+
+func _zone_color(zone: String) -> Color:
+	match zone:
+		"forest":        return Color(0.35, 0.85, 0.45)
+		"desert":        return Color(0.95, 0.75, 0.25)
+		"snow_mountain": return Color(0.55, 0.85, 1.0)
+		_:               return Color(1, 1, 1)
 
 func _input(event):
 	if visible and event is InputEventKey and event.is_action_pressed("ui_cancel"):

@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://map_snow001"]
+
+[ext_resource type="PackedScene" uid="uid://bkpyaft2y2e6y" path="res://scenes/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://blrghfb0id5hc" path="res://scenes/global/GlobalUI.tscn" id="2_globalui"]
+[ext_resource type="PackedScene" uid="uid://enemy_fwolf01" path="res://scenes/enemies/FrostWolf.tscn" id="3_fwolf"]
+[ext_resource type="PackedScene" uid="uid://enemy_yeti001" path="res://scenes/enemies/Yeti.tscn" id="4_yeti"]
+[ext_resource type="PackedScene" uid="uid://enemy_isprit1" path="res://scenes/enemies/IceSpirit.tscn" id="5_isprit"]
+[ext_resource type="PackedScene" uid="uid://enemy_gdrake1" path="res://scenes/enemies/GlacierDrake.tscn" id="6_gdrake"]
+[ext_resource type="Script" uid="uid://cegwe11lpx4iy" path="res://scripts/global/moveto/exist_door.gd" id="7_door"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gate"]
+size = Vector2(100, 60)
+
+[node name="SnowMountain" type="Node2D" unique_id=4100000001]
+
+[node name="Ground" type="ColorRect" parent="." unique_id=4100000002]
+offset_left = -1500.0
+offset_top = -1535.0
+offset_right = 1500.0
+offset_bottom = 1465.0
+color = Color(0.871, 0.918, 0.949, 1)
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=4100000003 groups=["player_spawn"]]
+
+[node name="Player" parent="." unique_id=4100000004 instance=ExtResource("1_player")]
+
+[node name="GlobalUi" parent="." unique_id=4100000005 instance=ExtResource("2_globalui")]
+
+[node name="ReturnGate" type="Area2D" parent="." unique_id=4100000006]
+position = Vector2(0, -700)
+script = ExtResource("7_door")
+spawn_position_in_village = Vector2(400, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnGate" unique_id=4100000007]
+position = Vector2(4, -54)
+shape = SubResource("RectangleShape2D_gate")
+
+[node name="GateVisual" type="ColorRect" parent="." unique_id=4100000008]
+offset_left = -45.0
+offset_top = -782.0
+offset_right = 55.0
+offset_bottom = -722.0
+color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+
+[node name="Label" type="Label" parent="." unique_id=4100000009]
+offset_left = -21.0
+offset_top = -803.0
+offset_right = 57.0
+offset_bottom = -780.0
+text = "To Village"
+
+[node name="FrostWolves" type="Node2D" parent="." unique_id=4100000010]
+
+[node name="FrostWolf1" parent="FrostWolves" instance=ExtResource("3_fwolf")]
+position = Vector2(450, 160)
+
+[node name="FrostWolf2" parent="FrostWolves" instance=ExtResource("3_fwolf")]
+position = Vector2(-430, 200)
+
+[node name="FrostWolf3" parent="FrostWolves" instance=ExtResource("3_fwolf")]
+position = Vector2(620, -180)
+
+[node name="FrostWolf4" parent="FrostWolves" instance=ExtResource("3_fwolf")]
+position = Vector2(-600, -120)
+
+[node name="FrostWolf5" parent="FrostWolves" instance=ExtResource("3_fwolf")]
+position = Vector2(280, 520)
+
+[node name="FrostWolf6" parent="FrostWolves" instance=ExtResource("3_fwolf")]
+position = Vector2(-280, 480)
+
+[node name="FrostWolf7" parent="FrostWolves" instance=ExtResource("3_fwolf")]
+position = Vector2(820, 300)
+
+[node name="FrostWolf8" parent="FrostWolves" instance=ExtResource("3_fwolf")]
+position = Vector2(-820, 340)
+
+[node name="FrostWolf9" parent="FrostWolves" instance=ExtResource("3_fwolf")]
+position = Vector2(150, 680)
+
+[node name="Yetis" type="Node2D" parent="." unique_id=4100000011]
+
+[node name="Yeti1" parent="Yetis" instance=ExtResource("4_yeti")]
+position = Vector2(700, 100)
+
+[node name="Yeti2" parent="Yetis" instance=ExtResource("4_yeti")]
+position = Vector2(-700, 150)
+
+[node name="Yeti3" parent="Yetis" instance=ExtResource("4_yeti")]
+position = Vector2(400, -350)
+
+[node name="Yeti4" parent="Yetis" instance=ExtResource("4_yeti")]
+position = Vector2(-400, 700)
+
+[node name="Yeti5" parent="Yetis" instance=ExtResource("4_yeti")]
+position = Vector2(950, 450)
+
+[node name="Yeti6" parent="Yetis" instance=ExtResource("4_yeti")]
+position = Vector2(-950, 400)
+
+[node name="IceSpirits" type="Node2D" parent="." unique_id=4100000012]
+
+[node name="IceSpirit1" parent="IceSpirits" instance=ExtResource("5_isprit")]
+position = Vector2(200, 300)
+
+[node name="IceSpirit2" parent="IceSpirits" instance=ExtResource("5_isprit")]
+position = Vector2(-200, 350)
+
+[node name="IceSpirit3" parent="IceSpirits" instance=ExtResource("5_isprit")]
+position = Vector2(500, 250)
+
+[node name="IceSpirit4" parent="IceSpirits" instance=ExtResource("5_isprit")]
+position = Vector2(-500, 280)
+
+[node name="IceSpirit5" parent="IceSpirits" instance=ExtResource("5_isprit")]
+position = Vector2(350, 600)
+
+[node name="IceSpirit6" parent="IceSpirits" instance=ExtResource("5_isprit")]
+position = Vector2(-350, 580)
+
+[node name="IceSpirit7" parent="IceSpirits" instance=ExtResource("5_isprit")]
+position = Vector2(750, -250)
+
+[node name="Bosses" type="Node2D" parent="." unique_id=4100000013]
+
+[node name="GlacierDrake" parent="Bosses" instance=ExtResource("6_gdrake")]
+position = Vector2(-1100, 900)
